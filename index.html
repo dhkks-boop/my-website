@@ -588,6 +588,7 @@
   <button class="tab-btn" onclick="showTab('t9',this)">⑨ 퀴즈 테스트</button>
   <button class="tab-btn" style="color:var(--accent3)" onclick="showTab('t10',this)">🎬 유튜브 연계</button>
   <button class="tab-btn" style="color:var(--accent5)" onclick="showTab('t11',this)">✏️ 파일 수정법</button>
+  <button class="tab-btn" style="color:var(--accent2)" onclick="showTab('t12',this)">💻 컴퓨터 강의</button>
 </nav>
  
 <div id="t1" class="tab-content active">
@@ -833,6 +834,90 @@ git push -u origin main</pre>
 git commit -m "update site"
 git push</pre>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="t12" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:linear-gradient(135deg,var(--accent2),var(--gold))">💻</div>
+      <div>
+        <h2>컴퓨터 기초 강의</h2>
+        <p>깃허브 설명과 함께 같은 주소에서 바로 보는 컴퓨터 입문</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🖥️ 컴퓨터 기본 구조</h3>
+      <p>컴퓨터는 <strong style="color:var(--accent)">입력 → 처리 → 저장 → 출력</strong>의 흐름으로 움직입니다. 키보드와 마우스로 입력하고, CPU가 계산하고, SSD나 HDD에 저장하고, 모니터와 스피커로 결과를 보여줍니다.</p>
+      <div class="flow-diagram">
+        <div class="flow-row">
+          <div class="flow-node blue">입력</div>
+          <div class="flow-arrow">▶</div>
+          <div class="flow-node green">CPU 처리</div>
+          <div class="flow-arrow">▶</div>
+          <div class="flow-node purple">저장장치</div>
+          <div class="flow-arrow">▶</div>
+          <div class="flow-node orange">화면 출력</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>⌨️ 꼭 외울 단축키</h3>
+      <table class="compare-table">
+        <tr><th>단축키</th><th>기능</th></tr>
+        <tr><td><strong>Ctrl + C</strong></td><td>복사</td></tr>
+        <tr><td><strong>Ctrl + V</strong></td><td>붙여넣기</td></tr>
+        <tr><td><strong>Ctrl + Z</strong></td><td>실행 취소</td></tr>
+        <tr><td><strong>Ctrl + S</strong></td><td>저장</td></tr>
+        <tr><td><strong>Alt + F4</strong></td><td>창 닫기</td></tr>
+        <tr><td><strong>Win + D</strong></td><td>바탕화면 보기</td></tr>
+      </table>
+      <div class="tip-box tip-green">
+        <span class="icon">✅</span>
+        <div><strong>핵심:</strong> 실수했을 때는 가장 먼저 <code>Ctrl + Z</code>를 눌러보면 됩니다.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💾 RAM · SSD · HDD 차이</h3>
+      <ul>
+        <li><strong>RAM</strong> — 실행 중인 작업을 잠깐 담아두는 임시 메모리</li>
+        <li><strong>SSD</strong> — 빠른 저장장치, 요즘 기본</li>
+        <li><strong>HDD</strong> — 느리지만 대용량 저장에 유리</li>
+      </ul>
+      <div class="tip-box tip-blue">
+        <span class="icon">💡</span>
+        <div><strong>쉽게 비유하면:</strong> RAM은 작업 책상, SSD/HDD는 서랍장입니다.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🌐 인터넷과 보안 기초</h3>
+      <p>인터넷은 전 세계 컴퓨터를 연결한 네트워크입니다. 웹사이트 주소는 <code>URL</code>, 안전한 웹 접속은 <code>HTTPS</code>를 사용합니다.</p>
+      <ul>
+        <li><strong>피싱</strong> — 가짜 사이트로 개인정보를 훔치는 것</li>
+        <li><strong>랜섬웨어</strong> — 파일을 잠그고 돈을 요구하는 악성코드</li>
+        <li><strong>2단계 인증</strong> — 비밀번호 외에 한 번 더 확인하는 보안 방식</li>
+      </ul>
+      <div class="tip-box tip-red">
+        <span class="icon">⚠️</span>
+        <div><strong>주의:</strong> 모르는 링크, 문자, 이메일 첨부파일은 함부로 누르지 않는 것이 가장 중요합니다.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🤖 AI 시대 컴퓨터 공부법</h3>
+      <p>요즘 컴퓨터 공부는 단순히 프로그램만 배우는 것이 아니라, <strong style="color:var(--accent4)">인터넷 · 파일 관리 · 보안 · AI 활용</strong>까지 같이 익히는 것이 중요합니다.</p>
+      <table class="compare-table">
+        <tr><th>주제</th><th>왜 중요한가</th></tr>
+        <tr><td>문서 작성</td><td>공문서, 이력서, 메모 정리에 필요</td></tr>
+        <tr><td>파일 관리</td><td>사진, 문서, USB, 폴더 정리에 필요</td></tr>
+        <tr><td>인터넷 검색</td><td>정보 찾기와 생활 활용의 기본</td></tr>
+        <tr><td>AI 사용</td><td>글쓰기, 요약, 번역, 아이디어 정리에 도움</td></tr>
+      </table>
     </div>
   </div>
 </div>
