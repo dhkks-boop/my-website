@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>김동홍 | 통합 플랫폼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+    }
+
+    h1 { font-size: 44px; margin: 0; }
+    .subtitle { margin-top: 10px; opacity: 0.9; }
+
+    .section { padding: 50px 20px; }
+
+    .card {
+      background: #1e293b;
+      margin: 20px auto;
+      padding: 25px;
+      max-width: 520px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 14px;
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: black;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      width: 85%;
+    }
+
+    #clock { margin-top: 15px; }
+
+    footer {
+      padding: 30px;
+      background: #020617;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>김동홍</h1>
+  <div class="subtitle">모르면 배우고, 배우면 만든다</div>
+  <div id="clock"></div>
+</header>
+
+<div class="section">
+
+  <!-- 프로젝트 -->
+  <div class="card">
+    <h2>🚀 프로젝트</h2>
+    <a class="btn" href="https://dhkks-boop.github.io/abcd/" target="_blank">ABCD 프로젝트</a>
+    <a class="btn" href="https://dhkks-boop.github.io/sfood/" target="_blank">건강 음식 프로젝트</a>
+  </div>
+
+  <!-- 유튜브 -->
+  <div class="card">
+    <h2>🎥 유튜브</h2>
+    <iframe width="100%" height="250"
+      src="https://www.youtube.com/embed?listType=user_uploads&list=dhkks">
+    </iframe>
+    <a class="btn" href="https://www.youtube.com/@dhkks" target="_blank">유튜브 채널 바로가기</a>
+  </div>
+
+  <!-- SNS -->
+  <div class="card">
+    <h2>📱 SNS</h2>
+    <a class="btn" href="https://story.kakao.com/dhkim/DYmvxltUpnA" target="_blank">카카오스토리</a>
+  </div>
+
+  <!-- AI -->
+  <div class="card">
+    <h2>🤖 AI 활용</h2>
+    <a class="btn" href="https://chat.openai.com" target="_blank">AI 질문하기</a>
+  </div>
+
+  <!-- 소개 -->
+  <div class="card">
+    <h2>📌 소개</h2>
+    <p>
+      컴맹에서 시작해 웹과 AI까지<br>
+      직접 배우고 만드는 실천형 창작자
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 김동홍 | FINAL PLATFORM
+</footer>
+
+<script>
+function updateClock() {
+  const now = new Date();
+  document.getElementById("clock").innerText =
+    now.toLocaleString();
+}
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>
