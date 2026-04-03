@@ -1,122 +1,927 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>김동홍 | 통합 플랫폼</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      text-align: center;
-    }
-
-    header {
-      padding: 80px 20px;
-      background: linear-gradient(135deg, #2563eb, #9333ea);
-    }
-
-    h1 { font-size: 44px; margin: 0; }
-    .subtitle { margin-top: 10px; opacity: 0.9; }
-
-    .section { padding: 50px 20px; }
-
-    .card {
-      background: #1e293b;
-      margin: 20px auto;
-      padding: 25px;
-      max-width: 520px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    .btn {
-      display: block;
-      margin: 10px auto;
-      padding: 14px;
-      background: linear-gradient(135deg, #22c55e, #4ade80);
-      color: black;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: bold;
-      width: 85%;
-    }
-
-    #clock { margin-top: 15px; }
-
-    footer {
-      padding: 30px;
-      background: #020617;
-      opacity: 0.6;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub 완전 분해 마스터 가이드 | 김동홍TV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+ 
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --accent5: #ffa657;
+    --gold: #e3b341;
+    --red: #f85149;
+    --glow: 0 0 20px rgba(88,166,255,0.3);
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+ 
+  /* ── 헤더 ── */
+  .site-header {
+    background: linear-gradient(135deg, #1a1f35 0%, #0d1117 50%, #1a1f2e 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 14px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(88,166,255,0.2);
+  }
+  .site-header .brand {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .site-header .motto {
+    font-size: 0.72rem;
+    color: var(--text2);
+    margin-top: 2px;
+  }
+  .header-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .header-links a {
+    background: var(--bg3);
+    color: var(--accent);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .header-links a:hover { background: var(--accent); color: #000; }
+ 
+  /* ── 히어로 ── */
+  .hero {
+    background: linear-gradient(180deg, #0d1117 0%, #0a192f 50%, #0d1117 100%);
+    padding: 60px 20px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(88,166,255,0.08) 0%, transparent 70%);
+    top: -200px; left: 50%; transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .hero-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 16px;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}
+  }
+  .hero h1 {
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, #58a6ff, #3fb950, #d2a8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    color: var(--text2);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .badge-blue { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+  .badge-green { background: rgba(63,185,80,0.15); color: var(--accent2); border: 1px solid rgba(63,185,80,0.3); }
+  .badge-purple { background: rgba(210,168,255,0.15); color: var(--accent4); border: 1px solid rgba(210,168,255,0.3); }
+ 
+  /* ── 탭 네비 ── */
+  .tab-nav {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: sticky;
+    top: 80px;
+    z-index: 900;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 14px 18px;
+    background: none;
+    border: none;
+    color: var(--text2);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+  .tab-btn:hover { color: var(--text); background: var(--bg3); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: rgba(88,166,255,0.05);
+  }
+ 
+  .tab-content { display: none; padding: 0 0 80px; }
+  .tab-content.active { display: block; }
+ 
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 20px 0;
+  }
+ 
+  .chapter-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chapter-num {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--accent), var(--accent4));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: var(--glow);
+  }
+  .chapter-header h2 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--text);
+  }
+  .chapter-header p {
+    font-size: 0.82rem;
+    color: var(--text2);
+    margin-top: 2px;
+  }
+ 
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p { color: var(--text2); font-size: 0.88rem; line-height: 1.8; }
+  .card ul { color: var(--text2); font-size: 0.88rem; padding-left: 20px; line-height: 2; }
+  .card li { margin-bottom: 4px; }
+  .card li strong { color: var(--text); }
+ 
+  .code-block {
+    background: #010409;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin: 14px 0;
+    overflow: hidden;
+  }
+  .code-header {
+    background: var(--bg3);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .code-label {
+    font-size: 0.72rem;
+    color: var(--text2);
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #f85149; }
+  .dot-y { background: #e3b341; }
+  .dot-g { background: #3fb950; }
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+  pre {
+    padding: 16px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: #e6edf3;
+  }
+  pre .cmd { color: var(--accent2); }
+  pre .comment { color: var(--text2); font-style: italic; }
+  pre .string { color: var(--accent5); }
+  pre .keyword { color: var(--accent4); }
+  pre .path { color: var(--accent3); }
+ 
+  .steps { counter-reset: step; }
+  .step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .step::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: -20px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .step:last-child::before { display: none; }
+  .step-num {
+    counter-increment: step;
+    width: 38px; height: 38px;
+    background: var(--bg3);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: var(--accent);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-body { flex: 1; padding-top: 6px; }
+  .step-body h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .step-body p, .step-body ul {
+    font-size: 0.85rem;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .step-body ul { padding-left: 18px; }
+ 
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin: 14px 0;
+  }
+  .compare-table th {
+    background: var(--bg3);
+    color: var(--accent);
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+  }
+  .compare-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    vertical-align: top;
+  }
+  .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .compare-table td strong { color: var(--text); }
+ 
+  .tip-box {
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    display: flex;
+    gap: 10px;
+  }
+  .tip-box .icon { font-size: 1.2rem; flex-shrink: 0; }
+  .tip-blue { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.25); color: var(--text2); }
+  .tip-green { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.25); color: var(--text2); }
+  .tip-red { background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.25); color: var(--text2); }
+  .tip-gold { background: rgba(227,179,65,0.08); border: 1px solid rgba(227,179,65,0.25); color: var(--text2); }
+  .tip-box strong { color: var(--text); }
+ 
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .glossary-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    transition: border-color 0.2s;
+  }
+  .glossary-item:hover { border-color: var(--accent4); }
+  .glossary-term {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent4);
+    margin-bottom: 6px;
+  }
+  .glossary-def {
+    font-size: 0.8rem;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+ 
+  .quiz-box {
+    background: var(--bg2);
+    border: 2px solid var(--accent4);
+    border-radius: 14px;
+    padding: 22px;
+    margin: 20px 0;
+  }
+  .quiz-box h3 { color: var(--accent4); font-size: 1rem; margin-bottom: 16px; }
+  .quiz-q { margin-bottom: 18px; }
+  .quiz-q p { font-size: 0.9rem; color: var(--text); margin-bottom: 10px; font-weight: 600; }
+  .quiz-options { display: flex; flex-direction: column; gap: 7px; }
+  .quiz-opt {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 0.83rem;
+    color: var(--text2);
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.15s;
+  }
+  .quiz-opt:hover { border-color: var(--accent4); color: var(--text); }
+  .quiz-opt.correct { background: rgba(63,185,80,0.15); border-color: var(--accent2); color: var(--accent2); }
+  .quiz-opt.wrong { background: rgba(248,81,73,0.12); border-color: var(--red); color: var(--red); }
+  .quiz-result { font-size: 0.82rem; margin-top: 8px; min-height: 20px; }
+  #quiz-score {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 16px;
+    display: none;
+  }
+ 
+  .flow-diagram {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    overflow-x: auto;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .flow-node {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .flow-node.blue { border-color: var(--accent); color: var(--accent); }
+  .flow-node.green { border-color: var(--accent2); color: var(--accent2); }
+  .flow-node.purple { border-color: var(--accent4); color: var(--accent4); }
+  .flow-node.orange { border-color: var(--accent5); color: var(--accent5); }
+  .flow-arrow { color: var(--text2); font-size: 0.9rem; }
+ 
+  .progress-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+  .progress-item { margin-bottom: 12px; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text2);
+    margin-bottom: 5px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: var(--bg3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+    animation: growBar 1.5s ease forwards;
+  }
+  @keyframes growBar {
+    from { width: 0; }
+  }
+ 
+  .site-footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 30px 20px;
+    text-align: center;
+  }
+  .footer-brand { font-size: 1rem; font-weight: 900; color: var(--gold); margin-bottom: 6px; }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+  .footer-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.8rem;
+  }
+  .footer-clock {
+    font-size: 0.78rem;
+    color: var(--text2);
+    margin-top: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .footer-copy { font-size: 0.72rem; color: var(--text2); margin-top: 6px; }
+ 
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+  }
+  .toc h4 { color: var(--gold); font-size: 0.85rem; margin-bottom: 12px; }
+  .toc ul { list-style: none; }
+  .toc li { margin-bottom: 6px; }
+  .toc a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc a:hover { color: var(--accent); }
+ 
+  @media(max-width:480px) {
+    .hero h1 { font-size: 1.5rem; }
+    .chapter-header h2 { font-size: 1.1rem; }
+    .glossary-grid { grid-template-columns: 1fr; }
+    .tab-btn { padding: 12px 14px; font-size: 0.78rem; }
+  }
+</style>
 </head>
-
 <body>
-
-<header>
-  <h1>김동홍</h1>
-  <div class="subtitle">모르면 배우고, 배우면 만든다</div>
-  <div id="clock"></div>
+ 
+<header class="site-header">
+  <div class="brand">☀️ 김동홍TV · 아침햇살 · 檀童</div>
+  <div class="motto">자부심과 긍지를 가지고 나누며 살자 · 순간을 영원으로</div>
+  <div class="header-links">
+    <a href="https://merry-horse-a0b679.netlify.app" target="_blank">🌐 홈페이지</a>
+    <a href="https://dhkks5908-design.github.io/new-life/" target="_blank">📱 몸편한앱</a>
+    <a href="https://www.youtube.com/@dhkks" target="_blank">▶️ 유튜브</a>
+  </div>
 </header>
-
-<div class="section">
-
-  <!-- 프로젝트 -->
-  <div class="card">
-    <h2>🚀 프로젝트</h2>
-    <a class="btn" href="https://dhkks-boop.github.io/abcd/" target="_blank">ABCD 프로젝트</a>
-    <a class="btn" href="https://dhkks-boop.github.io/sfood/" target="_blank">건강 음식 프로젝트</a>
+ 
+<section class="hero">
+  <span class="hero-icon">🐙</span>
+  <h1>GitHub 완전 분해<br>갈아마시는 가이드</h1>
+  <p>밑바닥부터 하나하나 · 아무것도 모르는 사람도 OK<br>개념 → 설치 → 실전 → 고급까지 완전 정복</p>
+  <div class="hero-badges">
+    <span class="badge badge-blue">🔰 완전 초보용</span>
+    <span class="badge badge-green">⚡ 실전 명령어</span>
+    <span class="badge badge-purple">🧩 개념 완전 분해</span>
   </div>
-
-  <!-- 유튜브 -->
-  <div class="card">
-    <h2>🎥 유튜브</h2>
-    <iframe width="100%" height="250"
-      src="https://www.youtube.com/embed?listType=user_uploads&list=dhkks">
-    </iframe>
-    <a class="btn" href="https://www.youtube.com/@dhkks" target="_blank">유튜브 채널 바로가기</a>
+</section>
+ 
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('t1',this)">① GitHub란?</button>
+  <button class="tab-btn" onclick="showTab('t2',this)">② 핵심 개념</button>
+  <button class="tab-btn" onclick="showTab('t3',this)">③ 가입·설치</button>
+  <button class="tab-btn" onclick="showTab('t4',this)">④ 명령어 사전</button>
+  <button class="tab-btn" onclick="showTab('t5',this)">⑤ 실전 업로드</button>
+  <button class="tab-btn" onclick="showTab('t6',this)">⑥ Pages배포</button>
+  <button class="tab-btn" onclick="showTab('t7',this)">⑦ 브랜치·협업</button>
+  <button class="tab-btn" onclick="showTab('t8',this)">⑧ 용어사전</button>
+  <button class="tab-btn" onclick="showTab('t9',this)">⑨ 퀴즈 테스트</button>
+  <button class="tab-btn" style="color:var(--accent3)" onclick="showTab('t10',this)">🎬 유튜브 연계</button>
+  <button class="tab-btn" style="color:var(--accent5)" onclick="showTab('t11',this)">✏️ 파일 수정법</button>
+</nav>
+ 
+<div id="t1" class="tab-content active">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">①</div>
+      <div>
+        <h2>GitHub이 뭔가? 처음부터 분해</h2>
+        <p>창고, 기록, 협업, 배포를 한 번에</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>📦 한마디로 설명하면?</h3>
+      <p>GitHub는 인터넷에 있는 프로젝트 창고입니다. 파일을 올려 두면 어디서든 볼 수 있고, 변경 기록도 남고, 웹사이트도 바로 배포할 수 있습니다.</p>
+    </div>
+    <div class="card">
+      <h3>📚 핵심 5개만 기억하기</h3>
+      <ul>
+        <li><strong>Repository</strong> 는 프로젝트 폴더</li>
+        <li><strong>Commit</strong> 은 저장 지점</li>
+        <li><strong>Push</strong> 는 GitHub로 올리기</li>
+        <li><strong>Pull</strong> 은 GitHub에서 가져오기</li>
+        <li><strong>Pages</strong> 는 웹사이트 배포 기능</li>
+      </ul>
+    </div>
   </div>
-
-  <!-- SNS -->
-  <div class="card">
-    <h2>📱 SNS</h2>
-    <a class="btn" href="https://story.kakao.com/dhkim/DYmvxltUpnA" target="_blank">카카오스토리</a>
-  </div>
-
-  <!-- AI -->
-  <div class="card">
-    <h2>🤖 AI 활용</h2>
-    <a class="btn" href="https://chat.openai.com" target="_blank">AI 질문하기</a>
-  </div>
-
-  <!-- 소개 -->
-  <div class="card">
-    <h2>📌 소개</h2>
-    <p>
-      컴맹에서 시작해 웹과 AI까지<br>
-      직접 배우고 만드는 실천형 창작자
-    </p>
-  </div>
-
 </div>
 
-<footer>
-  © 2026 김동홍 | FINAL PLATFORM
+<div id="t2" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">②</div>
+      <div>
+        <h2>핵심 개념</h2>
+        <p>Repository, Commit, Branch, Remote</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🧩 꼭 알아야 할 개념</h3>
+      <ul>
+        <li><strong>Repository</strong> 는 프로젝트 전체를 담는 저장소입니다.</li>
+        <li><strong>Commit</strong> 은 변경사항을 설명과 함께 저장하는 동작입니다.</li>
+        <li><strong>Branch</strong> 는 원본을 건드리지 않고 실험하는 작업 공간입니다.</li>
+        <li><strong>origin</strong> 은 원격 저장소의 기본 이름입니다.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="t3" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">③</div>
+      <div>
+        <h2>가입과 설치</h2>
+        <p>처음 한 번만 해두면 끝</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>💻 기본 준비</h3>
+      <ul>
+        <li>GitHub 계정을 만든다.</li>
+        <li>컴퓨터에서는 Git을 설치한다.</li>
+        <li><code>git config --global user.name</code> 과 <code>user.email</code> 을 설정한다.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="t4" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">④</div>
+      <div>
+        <h2>명령어 사전</h2>
+        <p>자주 쓰는 명령어만 먼저 익히기</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>⌨️ 황금 3줄</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-label">실전 명령어</div>
+          <button class="copy-btn" onclick="copyCode(this)">복사</button>
+        </div>
+        <pre>git add .
+git commit -m "수정 내용"
+git push</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="t5" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">⑤</div>
+      <div>
+        <h2>실전 업로드</h2>
+        <p>HTML 파일을 GitHub에 올리는 실제 흐름</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🚀 처음 올릴 때</h3>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-label">첫 업로드</div>
+          <button class="copy-btn" onclick="copyCode(this)">복사</button>
+        </div>
+        <pre>git init
+git add .
+git commit -m "first upload"
+git branch -M main
+git remote add origin https://github.com/아이디/저장소.git
+git push -u origin main</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="t6" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">⑥</div>
+      <div>
+        <h2>Pages 배포</h2>
+        <p>HTML 파일을 무료 웹사이트로 공개</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🌐 GitHub Pages</h3>
+      <p>저장소에 <code>index.html</code> 이 있으면 GitHub Pages로 웹사이트를 배포할 수 있습니다. 보통 주소는 <code>https://사용자명.github.io/저장소명/</code> 형식입니다.</p>
+    </div>
+    <div class="tip-box tip-green">
+      <span class="icon">✅</span>
+      <div>이 저장소는 이미 GitHub Pages가 연결되어 있어서, 파일을 수정하고 <code>git push</code> 하면 자동으로 다시 배포됩니다.</div>
+    </div>
+  </div>
+</div>
+
+<div id="t7" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">⑦</div>
+      <div>
+        <h2>브랜치와 협업</h2>
+        <p>안전하게 실험하고 함께 작업하기</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🌿 브랜치 기본</h3>
+      <p>브랜치는 원본을 건드리지 않고 새 기능을 실험하는 공간입니다. 혼자 작업할 때는 <code>main</code> 만 써도 되지만, 큰 수정은 브랜치로 나누면 더 안전합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div id="t8" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">⑧</div>
+      <div>
+        <h2>용어사전</h2>
+        <p>헷갈리는 단어 빠르게 정리</p>
+      </div>
+    </div>
+    <div class="glossary-grid">
+      <div class="glossary-item"><div class="glossary-term">Repository</div><div class="glossary-def">프로젝트 폴더 전체를 뜻합니다.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Commit</div><div class="glossary-def">변경사항을 기록하는 저장 지점입니다.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Push</div><div class="glossary-def">내 컴퓨터의 변경사항을 GitHub로 올립니다.</div></div>
+      <div class="glossary-item"><div class="glossary-term">Pull</div><div class="glossary-def">GitHub의 변경사항을 내 컴퓨터로 가져옵니다.</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="t9" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num">⑨</div>
+      <div>
+        <h2>퀴즈 테스트</h2>
+        <p>기초 개념 점검</p>
+      </div>
+    </div>
+    <div class="quiz-box">
+      <h3>🧪 빠른 확인 문제</h3>
+      <div class="quiz-q" id="q1">
+        <p>Q1. GitHub로 파일을 올리는 명령어는?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="checkQ(this,'q1',false)">git pull</button>
+          <button class="quiz-opt" onclick="checkQ(this,'q1',true)">git push</button>
+          <button class="quiz-opt" onclick="checkQ(this,'q1',false)">git branch</button>
+        </div>
+        <div class="quiz-result" id="r1"></div>
+      </div>
+      <div class="quiz-q" id="q2">
+        <p>Q2. 첫 페이지 파일명은 보통 무엇인가?</p>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="checkQ(this,'q2',true)">index.html</button>
+          <button class="quiz-opt" onclick="checkQ(this,'q2',false)">main.html</button>
+          <button class="quiz-opt" onclick="checkQ(this,'q2',false)">home.txt</button>
+        </div>
+        <div class="quiz-result" id="r2"></div>
+      </div>
+      <div id="quiz-score"></div>
+    </div>
+  </div>
+</div>
+
+<div id="t10" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:linear-gradient(135deg,#f00,#ff4444)">🎬</div>
+      <div>
+        <h2>유튜브 연계</h2>
+        <p>영상과 웹페이지를 함께 운영하기</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>📺 활용 팁</h3>
+      <p>유튜브 영상 설명란에 GitHub Pages 주소를 넣으면 시청자가 자세한 텍스트 가이드와 링크 모음을 한 번에 볼 수 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+<div id="t11" class="tab-content">
+  <div class="section">
+    <div class="chapter-header">
+      <div class="chapter-num" style="background:linear-gradient(135deg,var(--accent5),var(--gold))">✏️</div>
+      <div>
+        <h2>파일 수정법</h2>
+        <p>웹에서 수정하거나 컴퓨터에서 편집하기</p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>🛠️ 가장 쉬운 방법</h3>
+      <p>이 사이트를 수정하려면 <code>index.html</code> 을 바꾼 뒤 아래 3줄만 실행하면 됩니다.</p>
+      <div class="code-block">
+        <div class="code-header">
+          <div class="code-label">다시 배포하기</div>
+          <button class="copy-btn" onclick="copyCode(this)">복사</button>
+        </div>
+        <pre>git add .
+git commit -m "update site"
+git push</pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">☀️ 김동홍TV · 아침햇살 · 檀童</div>
+  <div style="color:var(--text2);font-size:0.78rem;margin-top:4px">자부심과 긍지를 가지고 나누며 살자 · 순간을 영원으로</div>
+  <div class="footer-links">
+    <a href="https://merry-horse-a0b679.netlify.app" target="_blank">🌐 홈페이지</a>
+    <a href="https://dhkks5908-design.github.io/new-life/" target="_blank">📱 몸편한앱</a>
+    <a href="https://www.youtube.com/@dhkks" target="_blank">▶️ 유튜브</a>
+  </div>
+  <div class="footer-clock" id="footer-clock"></div>
+  <div class="footer-copy">© 2026 김동홍TV · 아침햇살. All rights reserved.</div>
 </footer>
 
 <script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '복사됨!';
+    btn.style.background = 'var(--accent2)';
+    btn.style.color = '#000';
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1800);
+  });
+}
+
+let score = 0;
+let answered = 0;
+const total = 2;
+
+function checkQ(btn, qid, isCorrect) {
+  const qDiv = document.getElementById(qid);
+  if (qDiv.dataset.done) return;
+  qDiv.dataset.done = '1';
+  answered++;
+
+  const opts = qDiv.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.disabled = true);
+
+  const resultDiv = document.getElementById('r' + qid.slice(1));
+  if (isCorrect) {
+    btn.classList.add('correct');
+    resultDiv.innerHTML = '<span style="color:var(--accent2)">✅ 정답!</span>';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    resultDiv.innerHTML = '<span style="color:var(--red)">❌ 다시 확인해보세요.</span>';
+  }
+
+  if (answered === total) {
+    const scoreDiv = document.getElementById('quiz-score');
+    scoreDiv.style.display = 'block';
+    scoreDiv.innerHTML = `최종 점수: ${score}/${total}점`;
+  }
+}
+
 function updateClock() {
   const now = new Date();
-  document.getElementById("clock").innerText =
-    now.toLocaleString();
+  const days = ['일','월','화','수','목','금','토'];
+  const d = now.getDay();
+  const y = now.getFullYear();
+  const mo = now.getMonth() + 1;
+  const day = now.getDate();
+  let h = now.getHours();
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const ampm = h >= 12 ? '오후' : '오전';
+  if (h > 12) h -= 12;
+  if (h === 0) h = 12;
+  document.getElementById('footer-clock').textContent =
+    `${y}년 ${mo}월 ${day}일 (${days[d]}) ${ampm} ${h}:${m}`;
 }
-setInterval(updateClock, 1000);
-updateClock();
-</script>
 
+updateClock();
+setInterval(updateClock, 1000);
+</script>
 </body>
 </html>
