@@ -2,210 +2,1658 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>컴퓨터 기초 완전 정복 - 김동홍TV</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>💻 컴퓨터 완전정복 백과사전</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a1a0f;--bg2:#0f2218;--bg3:#152d1e;--bg4:#1c3828;
-  --gold:#c9a84c;--gold2:#f0c96e;--gold3:#ffe0a0;
-  --green:#2d7a4f;--green2:#3da068;--green3:#5ecc8a;
-  --text:#e8f0eb;--text2:#b0c8b8;--text3:#7a9e85;
-  --border:rgba(201,168,76,.22);--border2:rgba(61,160,104,.3);
-  --glass:rgba(255,255,255,.04);--glass2:rgba(255,255,255,.08);
-  --red:#e05c5c;--red2:#ffaaaa;
-  --radius:18px;--radius2:12px;
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --card: #1a1a28;
+  --card2: #1e1e30;
+  --accent: #00f5ff;
+  --accent2: #ff6b35;
+  --accent3: #a855f7;
+  --accent4: #22c55e;
+  --gold: #fbbf24;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: rgba(0,245,255,0.15);
+  --glow: 0 0 20px rgba(0,245,255,0.3);
 }
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;line-height:1.8;overflow-x:hidden;padding-bottom:calc(env(safe-area-inset-bottom)+3rem);}
-header{background:linear-gradient(135deg,#060f09,#0d1e13 60%,#111f16);border-bottom:2px solid var(--border);padding:0 1rem;position:sticky;top:0;z-index:500;box-shadow:0 4px 24px rgba(0,0,0,.7);}
-.hi{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
-.logo{font-family:'Noto Serif KR',serif;font-size:1.05rem;color:var(--gold2);font-weight:700;text-decoration:none;letter-spacing:.03em;}
-.logo em{color:var(--green2);font-style:normal;}
-.hn{display:flex;gap:.35rem;}
-.hn a{color:var(--text2);font-size:.72rem;text-decoration:none;padding:.25rem .55rem;border-radius:16px;border:1px solid transparent;transition:all .2s;}
-.hn a:hover{border-color:var(--gold);color:var(--gold2);}
-.hero{position:relative;overflow:hidden;padding:3rem 1rem 2.5rem;text-align:center;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% -10%,rgba(45,122,79,.3),transparent 65%),radial-gradient(ellipse 50% 40% at 85% 110%,rgba(201,168,76,.07),transparent);}
-.hero-in{position:relative;z-index:1;}
-.hbadge{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(90deg,rgba(45,122,79,.35),rgba(26,92,56,.35));border:1px solid var(--border2);color:var(--gold2);font-size:.73rem;font-weight:700;padding:.3rem 1rem;border-radius:20px;margin-bottom:1.1rem;letter-spacing:.08em;}
-.hero h1{font-family:'Noto Serif KR',serif;font-size:clamp(1.7rem,5.5vw,2.9rem);color:var(--gold2);line-height:1.25;margin-bottom:.75rem;}
-.hero h1 span{color:var(--green3);}
-.hero p{color:var(--text2);font-size:.93rem;max-width:520px;margin:0 auto .7rem;}
-.htag{color:var(--gold);font-size:.79rem;font-style:italic;opacity:.88;}
-.progress-bar-wrap{background:var(--bg3);border-bottom:1px solid var(--border);padding:.6rem 1rem;}
-.progress-bar-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:.8rem;}
-.pb-label{color:var(--text2);font-size:.78rem;white-space:nowrap;}
-.pb-track{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden;}
-.pb-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),var(--green2));transition:width .5s ease;}
-.pb-pct{color:var(--gold2);font-size:.78rem;font-weight:700;white-space:nowrap;min-width:2.5rem;text-align:right;}
-.chapter-list{max-width:1000px;margin:0 auto;padding:1.2rem 1rem .5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.5rem;}
-.ch-btn{background:var(--glass);border:1px solid var(--border);color:var(--text2);font-size:.75rem;padding:.55rem .5rem;border-radius:var(--radius2);cursor:pointer;transition:all .22s;font-family:inherit;text-align:center;line-height:1.4;touch-action:manipulation;}
-.ch-btn.on{background:linear-gradient(135deg,var(--green),#1a5c38);color:var(--gold2);border-color:var(--gold);box-shadow:0 4px 16px rgba(45,122,79,.4);}
-.ch-btn.done{border-color:var(--green2);color:var(--green3);}
-.ch-btn.done::after{content:' ✓';}
-main{max-width:1000px;margin:0 auto;padding:1.2rem 1rem;}
-.chapter{display:none;}
-.chapter.on{display:block;animation:fi .35s ease;}
-@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.ch-header{text-align:center;padding:1.2rem 0 1.5rem;}
-.ch-num{font-size:.8rem;color:var(--green2);font-weight:700;letter-spacing:.1em;margin-bottom:.4rem;}
-.ch-header h2{font-family:'Noto Serif KR',serif;font-size:1.65rem;color:var(--gold2);margin-bottom:.4rem;}
-.ch-header p{color:var(--text2);font-size:.88rem;}
-.step-panel{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;}
-.step-header{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;background:var(--glass2);border-bottom:1px solid var(--border);}
-.step-num-badge{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),#1a5c38);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.9rem;flex-shrink:0;box-shadow:0 3px 12px rgba(45,122,79,.45);}
-.step-title{font-size:1.05rem;font-weight:700;color:var(--gold2);}
-.step-badge{margin-left:auto;font-size:.7rem;padding:.2rem .6rem;border-radius:10px;background:rgba(45,122,79,.2);color:var(--green2);border:1px solid var(--green);white-space:nowrap;}
-.step-body{padding:1.2rem 1.4rem;}
-.step-desc{color:var(--text2);font-size:.9rem;margin-bottom:1rem;line-height:1.85;}
-.step-desc strong{color:var(--gold2);}
-.step-desc .hl{background:rgba(201,168,76,.15);border-radius:4px;padding:.1rem .4rem;color:var(--gold3);}
-.demo-area{background:var(--bg3);border:1px dashed var(--border2);border-radius:var(--radius2);padding:1.2rem;margin-bottom:1rem;text-align:center;}
-.demo-label{color:var(--text3);font-size:.78rem;margin-bottom:.8rem;letter-spacing:.05em;}
-.demo-screen{background:#1a2e1f;border:2px solid var(--border);border-radius:10px;padding:1rem;display:inline-block;min-width:220px;position:relative;}
-.demo-taskbar{background:#0d1a10;border-radius:6px;padding:.35rem .6rem;display:flex;align-items:center;gap:.5rem;margin-top:.7rem;}
-.demo-start{background:linear-gradient(135deg,#1e7a3c,#0f5228);border-radius:4px;padding:.25rem .55rem;font-size:.72rem;color:#fff;cursor:pointer;border:none;font-family:inherit;transition:all .2s;}
-.demo-start:hover{background:linear-gradient(135deg,#26a050,#155c30);transform:scale(1.05);}
-.demo-icon{width:32px;height:32px;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s;background:rgba(255,255,255,.06);border:1px solid transparent;}
-.demo-icon:hover{background:rgba(255,255,255,.15);border-color:var(--border2);transform:scale(1.1);}
-.demo-window{background:#0f2218;border:1px solid var(--border2);border-radius:8px;padding:.5rem;margin-bottom:.5rem;text-align:left;}
-.demo-titlebar{background:var(--green);border-radius:5px 5px 0 0;padding:.2rem .5rem;display:flex;align-items:center;justify-content:space-between;margin:-0.5rem -0.5rem .4rem;}
-.demo-titlebar span{font-size:.7rem;color:#fff;}
-.demo-winbtn{display:flex;gap:.25rem;}
-.demo-winbtn span{width:10px;height:10px;border-radius:50%;display:block;}
-.btn-min{background:#f0c96e;}
-.btn-max{background:#3da068;}
-.btn-cls{background:#e05c5c;}
-.demo-content{font-size:.75rem;color:var(--text2);padding:.2rem .3rem;}
-.demo-msg{margin-top:.6rem;font-size:.78rem;color:var(--green3);min-height:1.2rem;font-weight:700;animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-.tip{background:rgba(45,122,79,.13);border:1px solid rgba(45,122,79,.35);border-radius:var(--radius2);padding:.9rem 1.1rem;margin:.8rem 0;}
-.tip .tl{color:var(--green2);font-weight:700;margin-bottom:.3rem;font-size:.88rem;}
-.tip p,.tip ul{color:var(--text2);font-size:.85rem;}
-.tip ul{list-style:none;margin-top:.3rem;}
-.tip ul li::before{content:'✓ ';color:var(--green2);}
-.warn{background:rgba(200,90,50,.1);border:1px solid rgba(220,100,60,.3);border-radius:var(--radius2);padding:.9rem 1.1rem;margin:.8rem 0;}
-.warn .wl{color:#ffaa80;font-weight:700;margin-bottom:.3rem;font-size:.88rem;}
-.warn ul{list-style:none;}
-.warn ul li{color:#ffcba0;font-size:.84rem;padding:.15rem 0;}
-.warn ul li::before{content:'⚠ ';}
-.keys{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0;}
-.key{display:inline-flex;align-items:center;gap:.3rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.3rem .65rem;font-size:.8rem;color:var(--gold2);}
-.key kbd{background:var(--bg4);border:1px solid var(--border2);border-radius:4px;padding:.12rem .4rem;font-size:.76rem;color:var(--green3);font-family:monospace;}
-.key .kd{color:var(--text2);font-size:.77rem;}
-.tbl{width:100%;border-collapse:collapse;font-size:.84rem;margin:.5rem 0;}
-.tbl th{background:var(--bg3);color:var(--gold2);padding:.55rem .85rem;text-align:left;border-bottom:2px solid var(--border);}
-.tbl td{padding:.48rem .85rem;border-bottom:1px solid rgba(255,255,255,.05);color:var(--text2);vertical-align:top;}
-.tbl tr:hover td{background:var(--glass2);}
-ul.il{list-style:none;}
-ul.il li{padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.87rem;color:var(--text2);display:flex;gap:.6rem;align-items:flex-start;}
-ul.il li:last-child{border-bottom:none;}
-ul.il li::before{content:'▸';color:var(--gold);flex-shrink:0;margin-top:.15rem;}
-.quiz-section{background:linear-gradient(135deg,rgba(45,122,79,.12),rgba(201,168,76,.06));border:2px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:2rem;}
-.quiz-header{text-align:center;margin-bottom:1.2rem;}
-.quiz-header h3{font-family:'Noto Serif KR',serif;font-size:1.2rem;color:var(--gold2);}
-.quiz-header p{color:var(--text2);font-size:.83rem;margin-top:.3rem;}
-.quiz-q{margin-bottom:1.2rem;}
-.quiz-q-text{color:var(--text);font-size:.93rem;font-weight:600;margin-bottom:.7rem;padding-left:.3rem;border-left:3px solid var(--gold);}
-.quiz-opts{display:flex;flex-direction:column;gap:.45rem;}
-.quiz-opt{background:var(--glass);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;cursor:pointer;font-size:.87rem;color:var(--text2);transition:all .2s;text-align:left;font-family:inherit;}
-.quiz-opt:hover{background:var(--glass2);border-color:var(--gold);color:var(--text);}
-.quiz-opt.correct{background:rgba(45,122,79,.25);border-color:var(--green2);color:var(--green3);}
-.quiz-opt.wrong{background:rgba(200,80,60,.18);border-color:var(--red);color:var(--red2);}
-.quiz-opt.disabled{cursor:default;pointer-events:none;}
-.quiz-fb{font-size:.82rem;margin-top:.45rem;padding:.5rem .8rem;border-radius:8px;display:none;}
-.quiz-fb.show{display:block;}
-.quiz-fb.ok{background:rgba(45,122,79,.18);color:var(--green3);border:1px solid rgba(45,122,79,.3);}
-.quiz-fb.bad{background:rgba(200,80,60,.15);color:var(--red2);border:1px solid rgba(200,80,60,.25);}
-.quiz-score{text-align:center;padding:1.2rem;background:var(--bg3);border-radius:var(--radius2);margin-top:1rem;display:none;}
-.quiz-score.show{display:block;}
-.qs-num{font-family:'Noto Serif KR',serif;font-size:2.2rem;color:var(--gold2);font-weight:700;}
-.qs-label{color:var(--text2);font-size:.85rem;margin-top:.3rem;}
-.ch-nav{display:flex;gap:.8rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;}
-.nav-btn{display:flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;border-radius:12px;border:none;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;transition:all .22s;}
-.nav-prev{background:var(--glass2);color:var(--text2);border:1px solid var(--border);}
-.nav-prev:hover{color:var(--text);border-color:var(--gold);}
-.nav-next{background:linear-gradient(135deg,var(--green),#1a5c38);color:var(--gold2);box-shadow:0 4px 18px rgba(45,122,79,.35);}
-.nav-next:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(45,122,79,.5);}
-.nav-home{background:var(--glass);color:var(--text3);border:1px solid var(--border);}
-.nav-home:hover{color:var(--text2);}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
-@media(max-width:620px){.g2,.g3{grid-template-columns:1fr;}}
-.spc{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius2);padding:1rem;text-align:center;}
-.spc-i{font-size:2rem;margin-bottom:.4rem;}
-.spc-n{color:var(--gold2);font-weight:700;font-size:.9rem;}
-.spc-d{color:var(--text2);font-size:.8rem;margin-top:.3rem;line-height:1.5;}
-.complete-banner{display:none;text-align:center;padding:2.5rem 1.5rem;background:linear-gradient(135deg,rgba(45,122,79,.2),rgba(201,168,76,.1));border:2px solid var(--gold);border-radius:var(--radius);margin-top:2rem;}
-.complete-banner.show{display:block;animation:fi .5s ease;}
-.cb-emoji{font-size:3rem;margin-bottom:.8rem;}
-.cb-title{font-family:'Noto Serif KR',serif;font-size:1.6rem;color:var(--gold2);margin-bottom:.5rem;}
-.cb-sub{color:var(--text2);font-size:.9rem;}
-.cb-tag{color:var(--gold);font-style:italic;margin-top:.5rem;font-size:.83rem;}
-footer{background:#060f09;border-top:2px solid var(--border);padding:2rem 1rem;margin-top:3rem;text-align:center;}
-.fi{max-width:1000px;margin:0 auto;}
-.fb{font-family:'Noto Serif KR',serif;color:var(--gold2);font-size:1.1rem;margin-bottom:.5rem;}
-.fl{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin:.7rem 0;}
-.fl a{color:var(--green2);font-size:.82rem;text-decoration:none;}
-.fl a:hover{color:var(--gold2);}
-.fp{color:var(--text3);font-size:.78rem;margin-top:.3rem;}
-.ftag{color:var(--gold);font-size:.79rem;font-style:italic;margin-top:.25rem;opacity:.9;}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* ── HEADER ── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-shadow: var(--glow);
+}
+.logo span { color: var(--accent2); }
+.header-badge {
+  font-size: 10px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent));
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 40px 16px 32px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,245,255,0.08) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(168,85,247,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255,107,53,0.05) 0%, transparent 50%);
+}
+.hero-emoji { font-size: 48px; display: block; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.hero h1 {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.hero h1 .hl { color: var(--accent); }
+.hero h1 .hl2 { color: var(--accent2); }
+.hero-sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label { font-size: 11px; color: var(--muted); }
+
+/* ── SEARCH ── */
+.search-wrap {
+  padding: 16px;
+  position: relative;
+}
+.search-box {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 48px 14px 16px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-box:focus {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+.search-box::placeholder { color: var(--muted); }
+.search-icon {
+  position: absolute; right: 30px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+/* ── NAV CHIPS ── */
+.nav-chips {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px 16px 16px;
+  scrollbar-width: none;
+}
+.nav-chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.chip:hover, .chip.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 8px 16px 24px;
+  display: none;
+}
+.section.active { display: block; }
+.section-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: border-color 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover::before { opacity: 1; }
+.card:hover {
+  border-color: rgba(0,245,255,0.3);
+  transform: translateY(-2px);
+}
+.card-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.card-icon {
+  font-size: 28px;
+  width: 48px; height: 48px;
+  background: var(--card2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.card-en {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.card-body { font-size: 14px; color: var(--text); line-height: 1.8; }
+.card-body p { margin-bottom: 10px; }
+.card-body p:last-child { margin-bottom: 0; }
+
+/* ── TERM HIGHLIGHT ── */
+.term {
+  display: inline-block;
+  background: rgba(0,245,255,0.1);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,245,255,0.2);
+}
+.term-kr {
+  color: var(--accent2);
+  font-weight: 700;
+}
+.highlight { color: var(--gold); font-weight: 700; }
+.tip {
+  background: rgba(168,85,247,0.1);
+  border-left: 3px solid var(--accent3);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.tip-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent3);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.warn {
+  background: rgba(255,107,53,0.1);
+  border-left: 3px solid var(--accent2);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.warn-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent2);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.success {
+  background: rgba(34,197,94,0.1);
+  border-left: 3px solid var(--accent4);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: #0d1117;
+  border: 1px solid rgba(0,245,255,0.1);
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  overflow-x: auto;
+  margin: 10px 0;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+.code-block .kw { color: #ff7b72; }
+.code-block .str { color: #a5d6ff; }
+.code-block .cm { color: #8b949e; }
+.code-block .fn { color: #d2a8ff; }
+.code-block .num { color: #79c0ff; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; margin: 10px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: var(--card2);
+  color: var(--accent);
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(0,245,255,0.03); }
+
+/* ── BADGE ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+.badge-new { background: rgba(34,197,94,0.2); color: var(--accent4); border: 1px solid rgba(34,197,94,0.3); }
+.badge-hot { background: rgba(255,107,53,0.2); color: var(--accent2); border: 1px solid rgba(255,107,53,0.3); }
+.badge-ai { background: rgba(168,85,247,0.2); color: var(--accent3); border: 1px solid rgba(168,85,247,0.3); }
+.badge-basic { background: rgba(0,245,255,0.15); color: var(--accent); border: 1px solid var(--border); }
+
+/* ── ACCORDION ── */
+.accordion {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.acc-header {
+  padding: 14px 16px;
+  background: var(--card);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.acc-header:hover { background: var(--card2); }
+.acc-arrow {
+  color: var(--accent);
+  transition: transform 0.3s;
+  font-size: 18px;
+}
+.accordion.open .acc-arrow { transform: rotate(180deg); }
+.acc-body {
+  display: none;
+  padding: 16px;
+  background: var(--card2);
+  font-size: 14px;
+  line-height: 1.8;
+  border-top: 1px solid var(--border);
+}
+.accordion.open .acc-body { display: block; }
+
+/* ── QUIZ ── */
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.quiz-q {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quiz-opt {
+  padding: 12px 16px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.quiz-opt:hover { border-color: var(--accent); }
+.quiz-opt.correct { background: rgba(34,197,94,0.2); border-color: var(--accent4); color: var(--accent4); }
+.quiz-opt.wrong { background: rgba(255,107,53,0.2); border-color: var(--accent2); color: var(--accent2); }
+
+/* ── TIMELINE ── */
+.timeline { padding: 8px 0; }
+.tl-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 30px; top: 36px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+.tl-item:last-child::before { display: none; }
+.tl-year {
+  width: 60px;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  padding-top: 2px;
+}
+.tl-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 5px;
+  box-shadow: var(--glow);
+}
+.tl-content { flex: 1; }
+.tl-title { font-weight: 700; margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: var(--muted); }
+
+/* ── PROGRESS BAR ── */
+.skill-bar { margin-bottom: 12px; }
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.skill-track {
+  height: 6px;
+  background: var(--card2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transition: width 1s ease;
+}
+
+/* ── GRID 2 ── */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.mini-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.mini-card .icon { font-size: 24px; margin-bottom: 6px; }
+.mini-card .label { font-size: 12px; font-weight: 700; color: var(--accent); }
+.mini-card .val { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,15,0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bn-item {
+  flex: 1;
+  padding: 10px 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s;
+  color: var(--muted);
+}
+.bn-item.active { color: var(--accent); }
+.bn-icon { font-size: 20px; display: block; }
+.bn-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+
+/* ── CONTENT PAD ── */
+.content { padding-bottom: 80px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.section.active { animation: fadeIn 0.3s ease; }
+
+/* ── SPECIAL ── */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent));
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 16px 0;
+}
+.trending-tag {
+  display: inline-block;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.trending-tag:hover { color: var(--accent); border-color: var(--accent); }
+.big-number {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+}
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0;
+}
+.comp-box {
+  background: var(--card2);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.comp-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+.comp-list { font-size: 12px; color: var(--muted); line-height: 1.8; }
 </style>
 </head>
 <body>
-<header>
-  <div class="hi">
-    <a class="logo" href="#">🌿 <em>김동홍</em>TV 컴퓨터 기초 완전 정복</a>
-    <nav class="hn">
-      <a href="https://merry-horse-a0b679.netlify.app" target="_blank">🏠 홈</a>
-      <a href="https://www.youtube.com/@dhkks" target="_blank">📺 유튜브</a>
-      <a href="https://github.com/dhkks-boop/my-website" target="_blank">💻 깃허브</a>
-      <a href="https://story.kakao.com" target="_blank">💬 카카오</a>
-    </nav>
-  </div>
+
+<header class="site-header">
+  <div class="logo">💻 <span>COMP</span>MASTER</div>
+  <div class="header-badge">2025 최신판</div>
 </header>
-<div class="hero"><div class="hero-in"><div class="hbadge">💻 2026 완전판 · 단계별 인터랙티브 튜토리얼</div><h1>컴퓨터 기초<br><span>완전 정복 가이드</span></h1><p>처음 켜는 법부터 보안·유튜브까지<br>단계별로 천천히 — 누구나 따라할 수 있어요</p><div class="htag">✦ 자부심과 긍지를 가지고 나누며 살자 · 순간을 영원으로 ✦</div></div></div>
-<div class="progress-bar-wrap"><div class="progress-bar-inner"><span class="pb-label">📊 전체 진도</span><div class="pb-track"><div class="pb-fill" id="pbFill" style="width:0%"></div></div><span class="pb-pct" id="pbPct">0%</span></div></div>
-<div class="chapter-list" id="chList"><button class="ch-btn on" onclick="goChapter(1)">1️⃣<br>컴퓨터<br>기본 시작</button><button class="ch-btn" onclick="goChapter(2)">2️⃣<br>윈도우<br>기초</button><button class="ch-btn" onclick="goChapter(3)">3️⃣<br>키보드<br>마우스</button><button class="ch-btn" onclick="goChapter(4)">4️⃣<br>인터넷<br>이메일</button><button class="ch-btn" onclick="goChapter(5)">5️⃣<br>파일<br>관리</button><button class="ch-btn" onclick="goChapter(6)">6️⃣<br>문서<br>작성</button><button class="ch-btn" onclick="goChapter(7)">7️⃣<br>유튜브<br>소셜</button><button class="ch-btn" onclick="goChapter(8)">8️⃣<br>보안<br>관리</button></div>
-<main>
-<div id="ch1" class="chapter on">
-  <div class="ch-header"><div class="ch-num">CHAPTER 01 / 08</div><h2>🖥️ 컴퓨터 기본 시작</h2><p>각 부품의 이름과 역할 · 켜고 끄는 올바른 순서</p></div>
-  <div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">컴퓨터 부품 이름 알기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="step-desc">컴퓨터는 여러 부품이 함께 일하는 기계예요. 각 부품이 무엇을 하는지 먼저 알아봅시다!</div><div class="g3"><div class="spc"><div class="spc-i">🖥️</div><div class="spc-n">모니터</div><div class="spc-d">화면을 보여주는 장치. TV처럼 글자·사진·영상이 표시됩니다.</div></div><div class="spc"><div class="spc-i">🗄️</div><div class="spc-n">본체</div><div class="spc-d">컴퓨터의 두뇌. 모든 계산이 여기서 일어납니다.</div></div><div class="spc"><div class="spc-i">⌨️</div><div class="spc-n">키보드</div><div class="spc-d">글자·숫자·명령을 입력하는 장치.</div></div><div class="spc"><div class="spc-i">🖱️</div><div class="spc-n">마우스</div><div class="spc-d">화면의 화살표를 움직여 원하는 곳을 클릭합니다.</div></div><div class="spc"><div class="spc-i">🔊</div><div class="spc-n">스피커</div><div class="spc-d">음악·영상 소리를 출력하는 장치.</div></div><div class="spc"><div class="spc-i">📡</div><div class="spc-n">공유기</div><div class="spc-d">인터넷 신호를 집 안에 무선으로 퍼뜨립니다.</div></div></div><div class="tip"><div class="tl">💡 노트북은 이 모든 부품이 하나로 합쳐진 것!</div><p>노트북은 본체+모니터+키보드+마우스가 한 몸처럼 붙어 있습니다.</p></div></div></div>
-  <div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">컴퓨터 켜는 순서 — 직접 해보기</div><span class="step-badge">🖱️ 실습</span></div><div class="step-body"><div class="step-desc">아래 버튼을 순서대로 눌러보세요. 컴퓨터 켜는 순서를 연습합니다!</div><div class="demo-area"><div class="demo-label">▼ 순서대로 클릭해보세요</div><div style="display:flex;flex-direction:column;gap:.6rem;align-items:center;max-width:320px;margin:0 auto;"><button class="demo-start" id="btn_monitor" onclick="demoClick('monitor')" style="width:100%;padding:.5rem;">① 모니터 전원 켜기 ⏻</button><button class="demo-start" id="btn_body" onclick="demoClick('body')" style="width:100%;padding:.5rem;opacity:.4;cursor:not-allowed;" disabled>② 본체 전원 켜기 ⏻</button><button class="demo-start" id="btn_login" onclick="demoClick('login')" style="width:100%;padding:.5rem;opacity:.4;cursor:not-allowed;" disabled>③ 로그인하기 🔑</button></div><div class="demo-msg" id="demoMsg1">① 모니터부터 먼저 켜세요!</div></div></div></div>
-  <div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">컴퓨터 올바르게 끄기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="step-desc">컴퓨터를 끌 때는 반드시 <strong>시작 버튼 → 전원 → 시스템 종료</strong> 순서로 해야 합니다.</div><table class="tbl"><tr><th>방법</th><th>언제 쓰나요?</th><th>특징</th></tr><tr><td>🔴 시스템 종료</td><td>오늘 더 안 쓸 때</td><td>완전히 꺼짐</td></tr><tr><td>🔁 재시작</td><td>오류 해결 후</td><td>껐다가 다시 켜짐</td></tr><tr><td>💤 절전 모드</td><td>잠깐 자리 비울 때</td><td>빠르게 다시 사용 가능</td></tr></table><div class="tip"><div class="tl">💡 종료 방법</div><p>왼쪽 아래 윈도우 버튼 → 전원 → 시스템 종료를 선택하세요.</p></div></div></div>
-  <div class="quiz-section"><div class="quiz-header"><h3>🎯 1단원 확인 퀴즈</h3><p>배운 내용을 확인해봅시다!</p></div><div class="quiz-q"><div class="quiz-q-text">Q1. 컴퓨터를 켤 때 올바른 순서는?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q1a','wrong','q1')">① 본체 먼저 켜고 → 모니터 켜기</button><button class="quiz-opt" onclick="answerQ('q1b','correct','q1')">② 모니터 먼저 켜고 → 본체 켜기</button><button class="quiz-opt" onclick="answerQ('q1c','wrong','q1')">③ 동시에 켜도 상관없다</button></div><div class="quiz-fb" id="q1-fb-correct">✅ 정답! 모니터를 먼저 켜야 본체 화면이 제대로 표시됩니다.</div><div class="quiz-fb" id="q1-fb-wrong">❌ 틀렸어요. 모니터를 먼저 켜고, 그 다음 본체를 켜야 합니다.</div></div><div class="quiz-q"><div class="quiz-q-text">Q2. 컴퓨터를 끌 때 올바른 방법은?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q2a','wrong','q2')">① 전원 코드를 뽑는다</button><button class="quiz-opt" onclick="answerQ('q2b','wrong','q2')">② 전원 버튼을 길게 누른다</button><button class="quiz-opt" onclick="answerQ('q2c','correct','q2')">③ 시작 → 전원 → 시스템 종료</button></div><div class="quiz-fb" id="q2-fb-correct">✅ 정답! 정상 종료가 가장 안전합니다.</div><div class="quiz-fb" id="q2-fb-wrong">❌ 틀렸어요. 코드 뽑기와 강제 종료는 위험합니다.</div></div><div class="quiz-score" id="score-ch1"><div class="qs-num" id="score-ch1-num">0/2</div><div class="qs-label">1단원 퀴즈 결과</div></div></div>
-  <div class="ch-nav"><button class="nav-btn nav-home" onclick="goChapter(1)">🏠 처음으로</button><button class="nav-btn nav-next" onclick="goChapter(2)">2단원 → 윈도우 기초 ▶</button></div>
+
+<div class="content">
+
+<!-- HERO -->
+<div class="hero" id="home-hero">
+  <span class="hero-emoji">🚀</span>
+  <h1>컴퓨터 <span class="hl">완전정복</span><br><span class="hl2">백과사전</span></h1>
+  <p class="hero-sub">컴맹부터 AI 전문가까지 · 기초~최첨단 한방에</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">핵심 개념</div></div>
+    <div class="stat"><div class="stat-num">10개</div><div class="stat-label">분야</div></div>
+    <div class="stat"><div class="stat-num">2025</div><div class="stat-label">최신 업데이트</div></div>
+  </div>
 </div>
-<div id="ch2" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 02 / 08</div><h2>🪟 윈도우 기초</h2><p>바탕화면 · 시작메뉴 · 창 다루기 · 기본 설정</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">바탕화면 구조 이해하기</div><span class="step-badge">🖱️ 실습</span></div><div class="step-body"><div class="step-desc">컴퓨터를 켜면 나오는 화면을 <strong>바탕화면</strong>이라고 합니다.</div><div class="demo-area"><div class="demo-label">▼ 각 부분을 클릭해 설명을 확인하세요</div><div class="demo-screen" style="width:100%;max-width:400px;margin:0 auto;"><div style="min-height:80px;padding:.5rem;position:relative;cursor:pointer;" onclick="showDesktopInfo('desktop')"><div style="font-size:.7rem;color:var(--text3);text-align:right;">바탕화면 클릭!</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem;margin-top:.4rem;"><div class="demo-icon" onclick="event.stopPropagation();showDesktopInfo('icon')">📁</div><div class="demo-icon" onclick="event.stopPropagation();showDesktopInfo('icon')">🌐</div><div class="demo-icon" onclick="event.stopPropagation();showDesktopInfo('icon')">📄</div><div class="demo-icon" onclick="event.stopPropagation();showDesktopInfo('icon')">🗑️</div></div></div><div class="demo-taskbar"><button class="demo-start" onclick="showDesktopInfo('start')">⊞ 시작</button><div class="demo-icon" onclick="showDesktopInfo('search')" style="flex:1;border-radius:6px;font-size:.7rem;color:var(--text3);">🔍 검색</div><div style="font-size:.7rem;color:var(--text2);padding:0 .3rem;" onclick="showDesktopInfo('tray')">🔊 📶 🕐</div></div></div><div class="demo-msg" id="desktopInfo" style="margin-top:.8rem;padding:.6rem;background:var(--bg3);border-radius:8px;font-size:.82rem;color:var(--text2);text-align:left;animation:none;opacity:1;">위 화면의 각 부분을 클릭해보세요!</div></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">창(Window) 다루기</div><span class="step-badge">🖱️ 실습</span></div><div class="step-body"><div class="step-desc">창의 오른쪽 위 버튼 3개를 클릭해 창을 다뤄봐요!</div><div class="demo-area"><div class="demo-label">▼ 창 버튼을 눌러보세요</div><div id="demoWin" class="demo-window" style="max-width:320px;margin:0 auto;"><div class="demo-titlebar"><span>📁 내 컴퓨터</span><div class="demo-winbtn"><span class="btn-min" onclick="winBtn('min')" style="cursor:pointer;"></span><span class="btn-max" onclick="winBtn('max')" style="cursor:pointer;"></span><span class="btn-cls" onclick="winBtn('cls')" style="cursor:pointer;"></span></div></div><div class="demo-content">이것은 창입니다.<br>오른쪽 위 버튼을 눌러보세요!</div></div><div class="demo-msg" id="winMsg" style="animation:none;opacity:1;">노란색=최소화 / 초록=최대화 / 빨강=닫기</div></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">자주 쓰는 설정 위치</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">소리 조절</strong> — 작업표시줄 오른쪽 🔊 클릭</li><li><strong style="color:var(--gold2)">화면 밝기</strong> — 알림 영역에서 밝기 조절</li><li><strong style="color:var(--gold2)">와이파이 연결</strong> — 작업표시줄 📶 클릭</li><li><strong style="color:var(--gold2)">글자 크게</strong> — 설정 → 접근성 → 텍스트 크기</li></ul></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 2단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 창을 잠깐 숨겼다가 다시 쓰고 싶을 때 어떤 버튼을 누르나요?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q4a','wrong','q4')">✕ 닫기</button><button class="quiz-opt" onclick="answerQ('q4b','correct','q4')">─ 최소화</button><button class="quiz-opt" onclick="answerQ('q4c','wrong','q4')">□ 최대화</button></div><div class="quiz-fb" id="q4-fb-correct">✅ 정답! 최소화는 프로그램을 숨기기만 합니다.</div><div class="quiz-fb" id="q4-fb-wrong">❌ 틀렸어요. 잠깐 숨길 땐 최소화입니다.</div></div><div class="quiz-score" id="score-ch2"><div class="qs-num" id="score-ch2-num">0/1</div><div class="qs-label">2단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(1)">◀ 1단원</button><button class="nav-btn nav-next" onclick="goChapter(3)">3단원 → 키보드·마우스 ▶</button></div></div>
-<div id="ch3" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 03 / 08</div><h2>⌨️ 키보드 · 마우스</h2><p>마우스 조작 · 필수 단축키 · 한글 입력</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">마우스 5가지 조작법</div><span class="step-badge">🖱️ 실습</span></div><div class="step-body"><table class="tbl"><tr><th>조작</th><th>방법</th><th>용도</th></tr><tr><td>클릭</td><td>왼쪽 한 번</td><td>선택</td></tr><tr><td>더블클릭</td><td>왼쪽 두 번</td><td>열기</td></tr><tr><td>오른쪽 클릭</td><td>오른쪽 한 번</td><td>메뉴 열기</td></tr><tr><td>드래그</td><td>누른 채 이동</td><td>이동·선택</td></tr><tr><td>스크롤</td><td>휠 굴리기</td><td>위아래 이동</td></tr></table></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">반드시 외워야 할 단축키</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="keys"><div class="key"><kbd>Ctrl</kbd>+<kbd>C</kbd><span class="kd">복사</span></div><div class="key"><kbd>Ctrl</kbd>+<kbd>V</kbd><span class="kd">붙여넣기</span></div><div class="key"><kbd>Ctrl</kbd>+<kbd>Z</kbd><span class="kd">되돌리기</span></div><div class="key"><kbd>Ctrl</kbd>+<kbd>S</kbd><span class="kd">저장</span></div><div class="key"><kbd>⊞</kbd>+<kbd>E</kbd><span class="kd">파일탐색기</span></div><div class="key"><kbd>Alt</kbd>+<kbd>F4</kbd><span class="kd">종료</span></div></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">한글 입력 완전 정복</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">한글↔영어 전환</strong> — 한/영 키</li><li><strong style="color:var(--gold2)">특수문자</strong> — ㅁ + 한자</li><li><strong style="color:var(--gold2)">오타 수정</strong> — Backspace / Delete</li></ul></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 3단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 실수를 되돌리는 단축키는?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q6a','wrong','q6')">Ctrl+S</button><button class="quiz-opt" onclick="answerQ('q6b','correct','q6')">Ctrl+Z</button><button class="quiz-opt" onclick="answerQ('q6c','wrong','q6')">Ctrl+C</button></div><div class="quiz-fb" id="q6-fb-correct">✅ 정답! Ctrl+Z는 되돌리기입니다.</div><div class="quiz-fb" id="q6-fb-wrong">❌ 틀렸어요. 되돌리기는 Ctrl+Z입니다.</div></div><div class="quiz-score" id="score-ch3"><div class="qs-num" id="score-ch3-num">0/1</div><div class="qs-label">3단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(2)">◀ 2단원</button><button class="nav-btn nav-next" onclick="goChapter(4)">4단원 → 인터넷 ▶</button></div></div>
-<div id="ch4" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 04 / 08</div><h2>🌐 인터넷 · 이메일</h2><p>브라우저 · 검색 · 이메일 · 안전한 인터넷 사용법</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">브라우저란?</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="g2"><div class="spc"><div class="spc-i">🌐</div><div class="spc-n">Google Chrome</div><div class="spc-d">가장 많이 쓰는 브라우저</div></div><div class="spc"><div class="spc-i">🦊</div><div class="spc-n">Microsoft Edge</div><div class="spc-d">윈도우 기본 브라우저</div></div></div><div class="warn"><div class="wl">⚠ 인터넷 익스플로러 사용 금지</div><ul><li>지원 종료로 보안 위험이 큽니다.</li></ul></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">인터넷 주소창 & 검색 방법</div><span class="step-badge">🖱️ 실습</span></div><div class="step-body"><div class="demo-area"><div class="demo-label">▼ 아래 버튼을 클릭해 검색을 연습하세요</div><div style="background:#1a2e1f;border-radius:10px;padding:.8rem;max-width:380px;margin:0 auto;"><div style="background:#fff;border-radius:20px;display:flex;align-items:center;padding:.35rem .8rem;gap:.5rem;"><span style="font-size:.75rem;color:#666;">🔒</span><input id="urlInput" type="text" placeholder="주소 또는 검색어 입력" style="flex:1;border:none;outline:none;font-size:.8rem;background:transparent;color:#333;" /><span style="font-size:.85rem;cursor:pointer;" onclick="doSearch()">🔍</span></div><div style="display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap;"><button class="demo-start" onclick="setUrl('naver.com')">네이버</button><button class="demo-start" onclick="setUrl('youtube.com')">유튜브</button><button class="demo-start" onclick="setUrl('오늘 날씨')">오늘 날씨</button><button class="demo-start" onclick="setUrl('근처 병원')">근처 병원</button></div></div><div class="demo-msg" id="searchMsg" style="animation:none;opacity:1;">버튼을 클릭하거나 직접 입력해 보세요!</div></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">네이버 이메일 사용법</div><span class="step-badge">📖 개념</span></div><div class="step-body"><table class="tbl"><tr><th>순서</th><th>방법</th></tr><tr><td>① 접속</td><td>mail.naver.com 입력 → 로그인</td></tr><tr><td>② 메일쓰기</td><td>받는 사람, 제목, 내용 작성</td></tr><tr><td>③ 첨부</td><td>클립 아이콘 클릭</td></tr><tr><td>④ 보내기</td><td>보내기 버튼 클릭</td></tr></table><div class="warn"><div class="wl">⚠ 스팸·사기 이메일 주의</div><ul><li>모르는 링크와 첨부파일은 열지 마세요.</li></ul></div></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 4단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 인터넷 익스플로러를 계속 사용하면 안 되는 이유는?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q8a','wrong','q8')">속도가 느려서</button><button class="quiz-opt" onclick="answerQ('q8b','correct','q8')">지원 종료로 보안이 위험해서</button><button class="quiz-opt" onclick="answerQ('q8c','wrong','q8')">화면이 작아서</button></div><div class="quiz-fb" id="q8-fb-correct">✅ 정답! 지원 종료로 보안 패치가 없습니다.</div><div class="quiz-fb" id="q8-fb-wrong">❌ 틀렸어요. 지원 종료로 보안이 위험합니다.</div></div><div class="quiz-score" id="score-ch4"><div class="qs-num" id="score-ch4-num">0/1</div><div class="qs-label">4단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(3)">◀ 3단원</button><button class="nav-btn nav-next" onclick="goChapter(5)">5단원 → 파일 관리 ▶</button></div></div>
-<div id="ch5" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 05 / 08</div><h2>📁 파일 관리</h2><p>파일·폴더 이해 · 복사·이동·삭제 · USB 사용법</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">파일과 폴더 이해하기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="g2"><div class="spc"><div class="spc-i">📄</div><div class="spc-n">파일</div><div class="spc-d">문서·사진·영상 하나하나</div></div><div class="spc"><div class="spc-i">📁</div><div class="spc-n">폴더</div><div class="spc-d">파일을 담는 서랍장</div></div></div><table class="tbl" style="margin-top:.8rem;"><tr><th>확장자</th><th>파일 종류</th><th>여는 프로그램</th></tr><tr><td>.jpg .png</td><td>사진</td><td>사진 앱</td></tr><tr><td>.docx</td><td>워드 문서</td><td>Microsoft Word</td></tr><tr><td>.hwp</td><td>한글 문서</td><td>한글</td></tr><tr><td>.pdf</td><td>PDF 문서</td><td>브라우저</td></tr></table></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">파일 복사·이동·삭제</div><span class="step-badge">📖 개념</span></div><div class="step-body"><table class="tbl"><tr><th>작업</th><th>단축키 방법</th><th>마우스 방법</th></tr><tr><td>📋 복사</td><td>Ctrl+C → Ctrl+V</td><td>복사 → 붙여넣기</td></tr><tr><td>✂️ 이동</td><td>Ctrl+X → Ctrl+V</td><td>드래그</td></tr><tr><td>🗑️ 삭제</td><td>Delete</td><td>삭제 메뉴</td></tr><tr><td>✏️ 이름 변경</td><td>F2</td><td>이름 바꾸기</td></tr></table><div class="tip"><div class="tl">💡 삭제해도 걱정 없는 이유</div><p>Delete로 삭제하면 휴지통으로 이동합니다.</p></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">USB 메모리 안전하게 사용하기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">꽂기</strong> — USB 포트에 연결</li><li><strong style="color:var(--gold2)">열기</strong> — 파일 탐색기에서 새 드라이브 확인</li><li><strong style="color:var(--gold2)">안전하게 제거</strong> — 작업표시줄 USB 아이콘 클릭</li></ul><div class="warn"><div class="wl">⚠ USB 그냥 뽑지 마세요</div><ul><li>파일이 손상될 수 있습니다.</li></ul></div></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 5단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. Delete 키로 삭제한 파일은 어디에 있나요?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q10a','correct','q10')">휴지통</button><button class="quiz-opt" onclick="answerQ('q10b','wrong','q10')">완전히 사라진다</button><button class="quiz-opt" onclick="answerQ('q10c','wrong','q10')">바탕화면</button></div><div class="quiz-fb" id="q10-fb-correct">✅ 정답! 휴지통으로 이동합니다.</div><div class="quiz-fb" id="q10-fb-wrong">❌ 틀렸어요. 휴지통에 보관됩니다.</div></div><div class="quiz-score" id="score-ch5"><div class="qs-num" id="score-ch5-num">0/1</div><div class="qs-label">5단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(4)">◀ 4단원</button><button class="nav-btn nav-next" onclick="goChapter(6)">6단원 → 문서 작성 ▶</button></div></div>
-<div id="ch6" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 06 / 08</div><h2>📝 문서 작성</h2><p>한글·워드 · 저장·인쇄 · PDF 만들기</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">문서 프로그램 선택하기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><table class="tbl"><tr><th>프로그램</th><th>용도</th><th>특징</th></tr><tr><td>📄 한글(HWP)</td><td>공문서</td><td>한국 표준 문서</td></tr><tr><td>📘 Microsoft Word</td><td>보고서</td><td>기능 풍부</td></tr><tr><td>📓 메모장</td><td>간단 메모</td><td>가볍고 기본 내장</td></tr></table></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">문서 작성 기본 순서</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">새 문서</strong> — Ctrl+N</li><li><strong style="color:var(--gold2)">저장</strong> — Ctrl+S</li><li><strong style="color:var(--gold2)">인쇄</strong> — Ctrl+P</li><li><strong style="color:var(--gold2)">PDF 저장</strong> — PDF 프린터 선택</li></ul><div class="keys"><div class="key"><kbd>Ctrl</kbd>+<kbd>B</kbd><span class="kd">굵게</span></div><div class="key"><kbd>Ctrl</kbd>+<kbd>S</kbd><span class="kd">저장</span></div><div class="key"><kbd>Ctrl</kbd>+<kbd>P</kbd><span class="kd">인쇄</span></div></div></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 6단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 문서 작업 중 가장 자주 눌러야 하는 단축키는?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q13a','wrong','q13')">Ctrl+P</button><button class="quiz-opt" onclick="answerQ('q13b','correct','q13')">Ctrl+S</button><button class="quiz-opt" onclick="answerQ('q13c','wrong','q13')">Ctrl+C</button></div><div class="quiz-fb" id="q13-fb-correct">✅ 정답! Ctrl+S 저장을 자주 해야 합니다.</div><div class="quiz-fb" id="q13-fb-wrong">❌ 틀렸어요. 자주 저장해야 내용을 지킬 수 있습니다.</div></div><div class="quiz-score" id="score-ch6"><div class="qs-num" id="score-ch6-num">0/1</div><div class="qs-label">6단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(5)">◀ 5단원</button><button class="nav-btn nav-next" onclick="goChapter(7)">7단원 → 유튜브·소셜 ▶</button></div></div>
-<div id="ch7" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 07 / 08</div><h2>📺 유튜브 · 소셜미디어</h2><p>유튜브 검색·구독·자막 · 카카오톡PC · 스마트폰 연결</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">유튜브 완전 활용법</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">접속</strong> — youtube.com 입력</li><li><strong style="color:var(--gold2)">검색</strong> — 상단 검색창 사용</li><li><strong style="color:var(--gold2)">구독</strong> — 좋아하는 채널 구독</li><li><strong style="color:var(--gold2)">자막</strong> — CC 버튼 클릭</li></ul><div class="keys"><div class="key"><kbd>Space</kbd><span class="kd">재생/정지</span></div><div class="key"><kbd>F</kbd><span class="kd">전체화면</span></div><div class="key"><kbd>M</kbd><span class="kd">음소거</span></div></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">카카오톡 PC 버전 사용하기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">설치</strong> — 공식 사이트에서 다운로드</li><li><strong style="color:var(--gold2)">로그인</strong> — QR코드 또는 계정 로그인</li><li><strong style="color:var(--gold2)">파일 전송</strong> — 채팅창 클립 아이콘 사용</li><li><strong style="color:var(--gold2)">나와의 채팅</strong> — 폰과 PC 사이 파일 전송에 편리</li></ul></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">스마트폰 사진 컴퓨터로 옮기기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><table class="tbl"><tr><th>방법</th><th>준비물</th><th>단계</th></tr><tr><td>USB 케이블</td><td>충전 케이블</td><td>연결 → 파일 전송 선택 → 복사</td></tr><tr><td>카카오톡</td><td>카카오톡 PC</td><td>폰에서 보내고 PC에서 저장</td></tr><tr><td>구글 포토</td><td>구글 계정</td><td>백업 후 다운로드</td></tr></table></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 7단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 유튜브에서 영상 재생/정지할 때 쓰는 키는?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q14a','wrong','q14')">Enter</button><button class="quiz-opt" onclick="answerQ('q14b','correct','q14')">Space</button><button class="quiz-opt" onclick="answerQ('q14c','wrong','q14')">F</button></div><div class="quiz-fb" id="q14-fb-correct">✅ 정답! Space 키입니다.</div><div class="quiz-fb" id="q14-fb-wrong">❌ 틀렸어요. 재생/정지는 Space 키입니다.</div></div><div class="quiz-score" id="score-ch7"><div class="qs-num" id="score-ch7-num">0/1</div><div class="qs-label">7단원 퀴즈 결과</div></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(6)">◀ 6단원</button><button class="nav-btn nav-next" onclick="goChapter(8)">8단원 → 보안·관리 ▶</button></div></div>
-<div id="ch8" class="chapter"><div class="ch-header"><div class="ch-num">CHAPTER 08 / 08</div><h2>🛡️ 보안 · 컴퓨터 관리</h2><p>바이러스 예방 · 사기 피하기 · 백업 · 속도 향상</p></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">1</div><div class="step-title">인터넷 사기 완전 예방</div><span class="step-badge">⚠️ 중요</span></div><div class="step-body"><div class="warn"><div class="wl">⚠ 절대 하지 마세요</div><ul><li>출처 불명 링크 클릭</li><li>비밀번호·계좌번호 알려주기</li><li>원격 접속 허용</li><li>공공 와이파이에서 민감정보 입력</li></ul></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">2</div><div class="step-title">Windows 보안 유지하기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><ul class="il"><li><strong style="color:var(--gold2)">실시간 보호</strong> — Windows 보안 켜기</li><li><strong style="color:var(--gold2)">윈도우 업데이트</strong> — 업데이트 확인</li><li><strong style="color:var(--gold2)">강한 비밀번호</strong> — 쉬운 번호 금지</li><li><strong style="color:var(--gold2)">2단계 인증</strong> — 가능한 서비스는 설정</li></ul></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">3</div><div class="step-title">데이터 백업</div><span class="step-badge">📖 개념</span></div><div class="step-body"><div class="g3"><div class="spc"><div class="spc-i">☁️</div><div class="spc-n">클라우드</div><div class="spc-d">자동 동기화</div></div><div class="spc"><div class="spc-i">💾</div><div class="spc-n">외장 하드</div><div class="spc-d">대용량 백업</div></div><div class="spc"><div class="spc-i">🗂️</div><div class="spc-n">USB 메모리</div><div class="spc-d">중요 문서 보관</div></div></div><div class="tip"><div class="tl">💡 백업의 황금 법칙 3-2-1</div><p>3개 복사본, 2가지 매체, 1개는 외부 보관.</p></div></div></div><div class="step-panel"><div class="step-header"><div class="step-num-badge">4</div><div class="step-title">컴퓨터 속도 높이기</div><span class="step-badge">📖 개념</span></div><div class="step-body"><table class="tbl"><tr><th>문제</th><th>해결법</th></tr><tr><td>느림</td><td>작업관리자에서 시작 프로그램 정리</td></tr><tr><td>저장공간 부족</td><td>디스크 정리 실행</td></tr><tr><td>프로그램 먹통</td><td>작업 끝내기</td></tr></table></div></div><div class="quiz-section"><div class="quiz-header"><h3>🎯 8단원 확인 퀴즈</h3></div><div class="quiz-q"><div class="quiz-q-text">Q1. 원격 접속을 요구하는 의심 전화가 오면?</div><div class="quiz-opts"><button class="quiz-opt" onclick="answerQ('q16a','wrong','q16')">허용한다</button><button class="quiz-opt" onclick="answerQ('q16b','correct','q16')">바로 끊고 확인한다</button><button class="quiz-opt" onclick="answerQ('q16c','wrong','q16')">이름만 받아둔다</button></div><div class="quiz-fb" id="q16-fb-correct">✅ 정답! 의심 전화는 바로 끊고 직접 확인하세요.</div><div class="quiz-fb" id="q16-fb-wrong">❌ 틀렸어요. 이런 요구는 사기일 가능성이 큽니다.</div></div><div class="quiz-score" id="score-ch8"><div class="qs-num" id="score-ch8-num">0/1</div><div class="qs-label">8단원 퀴즈 결과</div></div></div><div class="complete-banner" id="completeBanner"><div class="cb-emoji">🎉🏆🎉</div><div class="cb-title">축하합니다! 컴퓨터 기초 완전 정복!</div><div class="cb-sub">8개 단원을 모두 마치셨습니다.<br>계속 연습하면 더 잘 할 수 있습니다!</div><div class="cb-tag">✦ 자부심과 긍지를 가지고 나누며 살자 · 순간을 영원으로 ✦</div><div style="margin-top:1rem;"><a href="https://www.youtube.com/@dhkks" target="_blank" style="display:inline-block;background:linear-gradient(135deg,var(--green),#1a5c38);color:var(--gold2);text-decoration:none;padding:.7rem 1.5rem;border-radius:12px;font-weight:700;font-size:.88rem;">📺 김동홍TV 유튜브 구독하기</a></div></div><div class="ch-nav"><button class="nav-btn nav-prev" onclick="goChapter(7)">◀ 7단원</button><button class="nav-btn nav-home" onclick="goChapter(1)">🏠 1단원부터 다시</button><button class="nav-btn nav-next" onclick="showComplete()">🏆 완료!</button></div></div>
-</main>
-<footer><div class="fi"><div class="fb">🌿 김동홍TV</div><div class="fl"><a href="https://www.youtube.com/@dhkks" target="_blank">📺 유튜브</a><a href="https://merry-horse-a0b679.netlify.app" target="_blank">🏠 홈페이지</a><a href="https://github.com/dhkks-boop/my-website" target="_blank">💻 깃허브</a><a href="https://story.kakao.com" target="_blank">💬 카카오스토리</a></div><div class="fp">펜네임: 아침햇살 · 檀童 | 요양보호사·조리기능사 자격 보유</div><div class="ftag">✦ 자부심과 긍지를 가지고 나누며 살자 · 순간을 영원으로 ✦</div><div class="fp" style="margin-top:.4rem;">© 2026 김동홍TV. 무단 전재 및 재배포를 금합니다.</div></div></footer>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <input class="search-box" id="searchInput" type="text" placeholder="🔍 검색: CPU, AI, 클라우드, 해킹...">
+  <span class="search-icon">🔍</span>
+</div>
+
+<!-- NAV CHIPS -->
+<div class="nav-chips">
+  <div class="chip active" onclick="showSection('basics', this)">🎯 기초</div>
+  <div class="chip" onclick="showSection('hardware', this)">⚙️ 하드웨어</div>
+  <div class="chip" onclick="showSection('software', this)">💾 소프트웨어</div>
+  <div class="chip" onclick="showSection('internet', this)">🌐 인터넷</div>
+  <div class="chip" onclick="showSection('programming', this)">👨‍💻 프로그래밍</div>
+  <div class="chip" onclick="showSection('ai', this)">🤖 AI/딥러닝</div>
+  <div class="chip" onclick="showSection('security', this)">🔐 보안</div>
+  <div class="chip" onclick="showSection('cloud', this)">☁️ 클라우드</div>
+  <div class="chip" onclick="showSection('mobile', this)">📱 모바일</div>
+  <div class="chip" onclick="showSection('quiz', this)">🎮 퀴즈</div>
+</div>
+
+<section class="section active" id="basics">
+  <div class="section-title"><div class="dot"></div>컴퓨터 기초 A to Z</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💡</div>
+      <div>
+        <div class="card-title">컴퓨터란 무엇인가?</div>
+        <div class="card-en">What is a Computer?</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>컴퓨터(<span class="term">Computer</span>)는 <span class="term-kr">데이터(자료)를 입력받아 처리하고 결과를 출력하는 전자 기계</span>입니다.</p>
+      <p>핵심 동작 원리: <span class="highlight">입력 → 처리 → 저장 → 출력</span></p>
+      <div class="grid2">
+        <div class="mini-card"><div class="icon">⌨️</div><div class="label">입력 (Input)</div><div class="val">키보드, 마우스, 마이크</div></div>
+        <div class="mini-card"><div class="icon">🧠</div><div class="label">처리 (Process)</div><div class="val">CPU가 계산 수행</div></div>
+        <div class="mini-card"><div class="icon">💾</div><div class="label">저장 (Storage)</div><div class="val">SSD, HDD, RAM</div></div>
+        <div class="mini-card"><div class="icon">🖥️</div><div class="label">출력 (Output)</div><div class="val">모니터, 스피커, 프린터</div></div>
+      </div>
+      <div class="tip"><div class="tip-label">💡 쉽게 이해하기</div>컴퓨터는 엄청 빠른 계산기입니다! 초당 수십억 번의 연산을 처리하죠. 우리가 앱을 클릭하면 → CPU가 계산하고 → 화면에 표시합니다.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔢</div>
+      <div>
+        <div class="card-title">2진법 — 컴퓨터의 언어</div>
+        <div class="card-en">Binary System (이진수)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>컴퓨터는 오직 <span class="highlight">0과 1</span>만 이해합니다. 왜? 전기가 <span class="term">OFF(0)</span> 또는 <span class="term">ON(1)</span> 두 가지 상태이기 때문!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>단위</th><th>원문</th><th>크기</th><th>예시</th></tr>
+          <tr><td><span class="term">bit</span></td><td>Binary digit</td><td>0 또는 1</td><td>가장 작은 단위</td></tr>
+          <tr><td><span class="term">byte</span></td><td>Byte</td><td>8 bits</td><td>영문자 1개</td></tr>
+          <tr><td><span class="term">KB</span></td><td>Kilobyte</td><td>1,024 bytes</td><td>짧은 문서</td></tr>
+          <tr><td><span class="term">MB</span></td><td>Megabyte</td><td>1,024 KB</td><td>노래 1곡(3~5MB)</td></tr>
+          <tr><td><span class="term">GB</span></td><td>Gigabyte</td><td>1,024 MB</td><td>영화 1편(1~4GB)</td></tr>
+          <tr><td><span class="term">TB</span></td><td>Terabyte</td><td>1,024 GB</td><td>외장하드</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">💡 재미있는 사실</div>'Hello'라는 5글자 = 5 bytes = 40 bits = 40개의 0과 1로 저장됩니다!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🖥️</div>
+      <div>
+        <div class="card-title">운영체제 (OS)</div>
+        <div class="card-en">Operating System</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">OS (Operating System)</span> = <span class="term-kr">운영체제</span>는 컴퓨터의 모든 것을 관리하는 총사령관입니다.</p>
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title">🪟 Windows</div>
+          <div class="comp-list">마이크로소프트<br>PC 시장 73%<br>게임에 강함<br>기업 환경</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">🍎 macOS</div>
+          <div class="comp-list">애플<br>디자이너 선호<br>보안 우수<br>iOS 연동</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">🐧 Linux</div>
+          <div class="comp-list">오픈소스(무료)<br>서버의 95%<br>개발자 필수<br>커스텀 가능</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">📱 Android</div>
+          <div class="comp-list">구글+리눅스<br>스마트폰 72%<br>오픈소스<br>삼성/LG 등</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📁</div>
+      <div>
+        <div class="card-title">파일과 폴더 완벽 이해</div>
+        <div class="card-en">File & Folder (Directory)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">파일(File)</span>: 데이터의 집합. 이름+확장자로 구성됩니다.<br>예: <span class="term">report.docx</span>, <span class="term">photo.jpg</span>, <span class="term">song.mp3</span></p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>확장자</th><th>Full Name</th><th>용도</th></tr>
+          <tr><td><span class="term">.jpg / .png</span></td><td>JPEG/PNG Image</td><td>사진, 이미지</td></tr>
+          <tr><td><span class="term">.mp4</span></td><td>MPEG-4 Video</td><td>동영상</td></tr>
+          <tr><td><span class="term">.mp3</span></td><td>MPEG Audio Layer 3</td><td>음악</td></tr>
+          <tr><td><span class="term">.pdf</span></td><td>Portable Document Format</td><td>문서</td></tr>
+          <tr><td><span class="term">.zip</span></td><td>Compressed Archive</td><td>압축파일</td></tr>
+          <tr><td><span class="term">.exe</span></td><td>Executable File</td><td>실행파일(윈도우)</td></tr>
+          <tr><td><span class="term">.html</span></td><td>HyperText Markup Language</td><td>웹페이지</td></tr>
+          <tr><td><span class="term">.py</span></td><td>Python Script</td><td>파이썬 코드</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⌨️</div>
+      <div>
+        <div class="card-title">꼭 알아야 할 단축키</div>
+        <div class="card-en">Keyboard Shortcuts</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>단축키</th><th>기능</th><th>영문 의미</th></tr>
+          <tr><td><span class="term">Ctrl+C</span></td><td>복사</td><td>Copy</td></tr>
+          <tr><td><span class="term">Ctrl+V</span></td><td>붙여넣기</td><td>Paste</td></tr>
+          <tr><td><span class="term">Ctrl+Z</span></td><td>실행취소</td><td>Undo</td></tr>
+          <tr><td><span class="term">Ctrl+S</span></td><td>저장</td><td>Save</td></tr>
+          <tr><td><span class="term">Ctrl+A</span></td><td>전체선택</td><td>Select All</td></tr>
+          <tr><td><span class="term">Alt+F4</span></td><td>프로그램 종료</td><td>Force Quit</td></tr>
+          <tr><td><span class="term">Win+D</span></td><td>바탕화면</td><td>Desktop</td></tr>
+          <tr><td><span class="term">Ctrl+Alt+Del</span></td><td>작업관리자</td><td>Task Manager</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hardware">
+  <div class="section-title"><div class="dot"></div>⚙️ 하드웨어 완전 해부</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">CPU — 컴퓨터의 두뇌</div>
+        <div class="card-en">Central Processing Unit (중앙처리장치)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>CPU는 모든 계산과 명령 처리를 담당합니다. 인텔(Intel)과 AMD가 양대산맥.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>의미</th></tr>
+          <tr><td><span class="term">클럭 속도</span></td><td>Clock Speed / GHz</td><td>초당 연산 횟수. 4GHz = 40억회/초</td></tr>
+          <tr><td><span class="term">코어</span></td><td>Core</td><td>CPU 안의 독립 처리 유닛. 많을수록 멀티태스킹↑</td></tr>
+          <tr><td><span class="term">스레드</span></td><td>Thread</td><td>코어가 동시에 처리하는 작업 흐름</td></tr>
+          <tr><td><span class="term">캐시</span></td><td>Cache Memory</td><td>CPU 초고속 임시메모리 (L1/L2/L3)</td></tr>
+          <tr><td><span class="term">TDP</span></td><td>Thermal Design Power</td><td>CPU 발열량(와트). 높을수록 성능↑열↑</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신</div>Intel Core Ultra 200 시리즈, AMD Ryzen 9000 시리즈 출시. <span class="term">NPU(Neural Processing Unit)</span> 내장으로 AI 가속 기능 탑재!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💾</div>
+      <div>
+        <div class="card-title">RAM vs SSD vs HDD</div>
+        <div class="card-en">Memory & Storage 완전 비교</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">💾 RAM (Random Access Memory) — 작업 메모리 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>컴퓨터가 현재 실행 중인 프로그램의 데이터를 저장하는 <span class="term-kr">임시 메모리</span>입니다.</p>
+          <p>📌 <span class="term">휘발성(Volatile)</span>: 전원 끄면 데이터 사라짐!</p>
+          <p>현재 주류: <span class="term">DDR5</span> (2025년 기준, 최대 6400MHz)</p>
+          <p>권장: 게임용 16GB, 영상편집 32GB, 서버 64GB+</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">⚡ SSD (Solid State Drive) — 빠른 저장장치 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>플래시 메모리를 사용한 저장장치. HDD보다 <span class="highlight">5~10배 빠름!</span></p>
+          <p><span class="term">NVMe SSD</span>: PCIe 통신방식, 7,000MB/s (HDD는 150MB/s)</p>
+          <p><span class="term">SATA SSD</span>: 구형 인터페이스, 550MB/s, 저렴</p>
+          <p>2025년 현재: <span class="term">PCIe 5.0 NVMe</span>는 14,000MB/s 돌파!</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🔄 HDD (Hard Disk Drive) — 대용량 저장장치 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>자기 원판을 물리적으로 회전시켜 데이터 저장.</p>
+          <p>장점: 저렴한 대용량 (TB급)</p>
+          <p>단점: 느림, 충격에 약함, 소음</p>
+          <p>2025년 HDD: HAMR 기술로 <span class="term">32TB</span>까지 출시!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎮</div>
+      <div>
+        <div class="card-title">GPU — 그래픽 처리 장치</div>
+        <div class="card-en">Graphics Processing Unit</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>원래는 게임 그래픽 담당이었지만, 지금은 <span class="highlight">AI 학습의 핵심!</span></p>
+      <p>CPU는 수십 개의 강력한 코어 vs GPU는 수천~수만 개의 작은 코어로 병렬처리.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>의미</th></tr>
+          <tr><td><span class="term">VRAM</span></td><td>Video RAM — GPU 전용 메모리. AI 모델 크기 결정!</td></tr>
+          <tr><td><span class="term">CUDA</span></td><td>엔비디아의 GPU 병렬 연산 플랫폼 (AI 필수)</td></tr>
+          <tr><td><span class="term">DLSS</span></td><td>Deep Learning Super Sampling — AI로 화질 향상</td></tr>
+          <tr><td><span class="term">Ray Tracing</span></td><td>광선 추적 — 빛 반사를 현실적으로 표현</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 핫이슈</div>NVIDIA RTX 5090 출시 (2025년). <span class="term">VRAM 32GB</span>, 초당 125 TOPS AI 연산. 가격은 약 250만원... 😅</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="software">
+  <div class="section-title"><div class="dot"></div>💾 소프트웨어 세계</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📦</div>
+      <div>
+        <div class="card-title">소프트웨어의 종류</div>
+        <div class="card-en">Types of Software</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>종류</th><th>원문</th><th>예시</th></tr>
+          <tr><td><span class="term-kr">시스템 소프트웨어</span></td><td>System Software</td><td>Windows, macOS, Linux</td></tr>
+          <tr><td><span class="term-kr">응용 소프트웨어</span></td><td>Application Software</td><td>Word, Chrome, Photoshop</td></tr>
+          <tr><td><span class="term-kr">미들웨어</span></td><td>Middleware</td><td>데이터베이스 드라이버, API</td></tr>
+          <tr><td><span class="term-kr">오픈소스</span></td><td>Open Source Software</td><td>Linux, VLC, Firefox</td></tr>
+          <tr><td><span class="term-kr">상용 소프트웨어</span></td><td>Commercial/Proprietary</td><td>MS Office, Adobe CC</td></tr>
+          <tr><td><span class="term-kr">펌웨어</span></td><td>Firmware</td><td>라우터, 프린터 내장 소프트웨어</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div>
+        <div class="card-title">프로세스와 스레드</div>
+        <div class="card-en">Process & Thread</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">프로세스(Process)</span>: 실행 중인 프로그램. 독립된 메모리 공간 보유.</p>
+      <p><span class="term">스레드(Thread)</span>: 프로세스 안의 실행 단위. 한 프로세스가 여러 스레드 운영 가능.</p>
+      <div class="tip"><div class="tip-label">💡 예시</div>크롬 브라우저(프로세스) 안에서 여러 탭(스레드)이 동시에 작동하는 것처럼!</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>상태</th><th>원문</th><th>의미</th></tr>
+          <tr><td>준비</td><td>Ready</td><td>CPU 배정 대기 중</td></tr>
+          <tr><td>실행</td><td>Running</td><td>CPU가 현재 처리 중</td></tr>
+          <tr><td>대기</td><td>Waiting/Blocked</td><td>I/O 처리 기다리는 중</td></tr>
+          <tr><td>종료</td><td>Terminated</td><td>실행 완료</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗄️</div>
+      <div>
+        <div class="card-title">데이터베이스 (DB)</div>
+        <div class="card-en">Database — 모든 앱의 기반</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>데이터를 체계적으로 저장하고 관리하는 시스템.</p>
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">관계형 DB</div>
+          <div class="comp-list">SQL 사용<br>표(Table) 형태<br>MySQL, PostgreSQL<br>Oracle, SQLite</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">비관계형 DB</div>
+          <div class="comp-list">NoSQL<br>유연한 구조<br>MongoDB, Redis<br>Cassandra</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">📌 SQL 기본 문법</div></div>
+      <div class="code-block">
+<span class="cm">-- 데이터 조회</span>
+<span class="kw">SELECT</span> 이름, 나이 <span class="kw">FROM</span> 회원
+<span class="kw">WHERE</span> 나이 > <span class="num">20</span>
+<span class="kw">ORDER BY</span> 이름;
+
+<span class="cm">-- 데이터 삽입</span>
+<span class="kw">INSERT INTO</span> 회원 (이름, 나이)
+<span class="kw">VALUES</span> (<span class="str">'홍길동'</span>, <span class="num">25</span>);
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="internet">
+  <div class="section-title"><div class="dot"></div>🌐 인터넷 & 네트워크</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌍</div>
+      <div>
+        <div class="card-title">인터넷은 어떻게 동작하나?</div>
+        <div class="card-en">How the Internet Works</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>인터넷(Internet)은 전 세계 컴퓨터를 연결하는 <span class="term-kr">거대한 네트워크</span>입니다.</p>
+      <p>데이터는 <span class="term">패킷(Packet)</span>으로 쪼개져 전송됩니다. 각 패킷은 독립적으로 이동 후 목적지에서 재조합!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>의미</th></tr>
+          <tr><td><span class="term">IP 주소</span></td><td>IP Address</td><td>인터넷상의 컴퓨터 주소 (192.168.1.1)</td></tr>
+          <tr><td><span class="term">DNS</span></td><td>Domain Name System</td><td>도메인↔IP 변환 전화번호부</td></tr>
+          <tr><td><span class="term">HTTP/HTTPS</span></td><td>HyperText Transfer Protocol (Secure)</td><td>웹 데이터 전송 규약</td></tr>
+          <tr><td><span class="term">라우터</span></td><td>Router</td><td>패킷의 경로를 결정하는 장치</td></tr>
+          <tr><td><span class="term">방화벽</span></td><td>Firewall</td><td>악성 트래픽 차단 시스템</td></tr>
+          <tr><td><span class="term">VPN</span></td><td>Virtual Private Network</td><td>암호화된 가상 사설망</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📡</div>
+      <div>
+        <div class="card-title">네트워크 세대 비교</div>
+        <div class="card-en">Network Generation: 3G → 4G → 5G → 6G</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>세대</th><th>최대속도</th><th>지연시간</th><th>특징</th></tr>
+          <tr><td><span class="term">3G</span></td><td>14 Mbps</td><td>~100ms</td><td>스마트폰 인터넷</td></tr>
+          <tr><td><span class="term">4G LTE</span></td><td>150 Mbps</td><td>~30ms</td><td>유튜브, 스트리밍</td></tr>
+          <tr><td><span class="term">5G</span></td><td>20 Gbps</td><td>1ms</td><td>자율주행, IoT</td></tr>
+          <tr><td><span class="term">6G</span></td><td>1 Tbps</td><td>0.1ms</td><td>2030년 예상, 홀로그램</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 5G의 혁명</div>5G의 1ms 지연은 사람 반응속도(200ms)보다 200배 빠릅니다. 이래서 자율주행차에 필수!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔗</div>
+      <div>
+        <div class="card-title">프로토콜 완전 정리</div>
+        <div class="card-en">Network Protocols</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>프로토콜</th><th>Full Name</th><th>용도</th></tr>
+          <tr><td><span class="term">TCP</span></td><td>Transmission Control Protocol</td><td>신뢰성 있는 데이터 전송</td></tr>
+          <tr><td><span class="term">UDP</span></td><td>User Datagram Protocol</td><td>빠른 전송(게임, 영상통화)</td></tr>
+          <tr><td><span class="term">HTTP/S</span></td><td>HyperText Transfer Protocol</td><td>웹 페이지 전송</td></tr>
+          <tr><td><span class="term">FTP</span></td><td>File Transfer Protocol</td><td>파일 전송</td></tr>
+          <tr><td><span class="term">SMTP</span></td><td>Simple Mail Transfer Protocol</td><td>이메일 발송</td></tr>
+          <tr><td><span class="term">SSH</span></td><td>Secure Shell</td><td>원격 서버 안전 접속</td></tr>
+          <tr><td><span class="term">WebSocket</span></td><td>WebSocket Protocol</td><td>실시간 양방향 통신(채팅)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="programming">
+  <div class="section-title"><div class="dot"></div>👨‍💻 프로그래밍 입문</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗺️</div>
+      <div>
+        <div class="card-title">프로그래밍 언어 지도</div>
+        <div class="card-en">Programming Languages Map</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>언어</th><th>특징</th><th>주요 용도</th><th>난이도</th></tr>
+          <tr><td><span class="term">Python</span></td><td>쉽고 간결</td><td>AI, 데이터, 자동화</td><td>⭐⭐</td></tr>
+          <tr><td><span class="term">JavaScript</span></td><td>웹 표준</td><td>웹 프론트엔드/백엔드</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Java</span></td><td>안정성↑</td><td>기업 서버, 안드로이드</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">C/C++</span></td><td>빠른 속도</td><td>게임엔진, OS, 임베디드</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Rust</span></td><td>안전+빠름</td><td>시스템 프로그래밍</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Swift</span></td><td>iOS 전용</td><td>아이폰/맥 앱</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Go</span></td><td>구글 개발</td><td>클라우드, 마이크로서비스</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">TypeScript</span></td><td>JS + 타입</td><td>대형 웹 프로젝트</td><td>⭐⭐⭐</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🐍</div>
+      <div>
+        <div class="card-title">파이썬 기초 맛보기</div>
+        <div class="card-en">Python Basics</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>파이썬은 영어처럼 읽히는 가장 배우기 쉬운 언어!</p>
+      <div class="code-block">
+<span class="cm"># 변수(Variable): 데이터를 담는 상자</span>
+이름 = <span class="str">"홍길동"</span>
+나이 = <span class="num">25</span>
+키 = <span class="num">175.5</span>
+
+<span class="cm"># 출력 (print)</span>
+<span class="fn">print</span>(<span class="str">f"안녕! 나는 {이름}, {나이}살이야"</span>)
+
+<span class="cm"># 조건문 (if / elif / else)</span>
+<span class="kw">if</span> 나이 >= <span class="num">18</span>:
+    <span class="fn">print</span>(<span class="str">"성인입니다"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"미성년자입니다"</span>)
+
+<span class="cm"># 반복문 (for loop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="str">f"{i}번째 반복!"</span>)
+
+<span class="cm"># 함수 (Function): 재사용 가능한 코드 묶음</span>
+<span class="kw">def</span> <span class="fn">인사하기</span>(이름):
+    <span class="kw">return</span> <span class="str">f"안녕하세요, {이름}님!"</span>
+
+<span class="fn">print</span>(<span class="fn">인사하기</span>(<span class="str">"철수"</span>))
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌐</div>
+      <div>
+        <div class="card-title">웹 개발 구조</div>
+        <div class="card-en">Web Development Stack</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">프론트엔드</div>
+          <div class="comp-list">Frontend<br>HTML (구조)<br>CSS (디자인)<br>JavaScript (동작)<br>React/Vue</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">백엔드</div>
+          <div class="comp-list">Backend<br>Node.js<br>Python(Django)<br>Java(Spring)<br>데이터베이스</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">📌 Full Stack</div>프론트엔드 + 백엔드 모두 개발하는 개발자를 <span class="term">풀스택(Full Stack) 개발자</span>라고 합니다!</div>
+      <p>2025년 인기 기술스택: <span class="badge badge-hot">Next.js</span> <span class="badge badge-new">Bun</span> <span class="badge badge-ai">Vercel AI SDK</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔧</div>
+      <div>
+        <div class="card-title">개발 필수 도구들</div>
+        <div class="card-en">Developer Tools</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>도구</th><th>원문</th><th>역할</th></tr>
+          <tr><td><span class="term">Git</span></td><td>Version Control System</td><td>코드 변경 이력 관리</td></tr>
+          <tr><td><span class="term">GitHub</span></td><td>Git Repository Hosting</td><td>코드 공유 플랫폼</td></tr>
+          <tr><td><span class="term">Docker</span></td><td>Container Platform</td><td>앱을 컨테이너에 패키징</td></tr>
+          <tr><td><span class="term">VS Code</span></td><td>Visual Studio Code</td><td>가장 인기있는 코드 편집기</td></tr>
+          <tr><td><span class="term">API</span></td><td>Application Programming Interface</td><td>프로그램 간 통신 창구</td></tr>
+          <tr><td><span class="term">CI/CD</span></td><td>Continuous Integration/Delivery</td><td>자동 빌드·배포 파이프라인</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai">
+  <div class="section-title"><div class="dot"></div>🤖 AI & 딥러닝 최첨단</div>
+
+  <span class="badge badge-hot">🔥 2025 최신</span>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">AI의 계층 구조</div>
+        <div class="card-en">AI Hierarchy: AI → ML → DL → GenAI</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>계층</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">AI</span></td><td>Artificial Intelligence (인공지능)</td><td>인간 지능을 모방하는 모든 기술</td></tr>
+          <tr><td><span class="term">ML</span></td><td>Machine Learning (머신러닝)</td><td>데이터로 스스로 학습하는 AI</td></tr>
+          <tr><td><span class="term">DL</span></td><td>Deep Learning (딥러닝)</td><td>신경망 기반 ML. 이미지·음성 최강</td></tr>
+          <tr><td><span class="term">GenAI</span></td><td>Generative AI (생성형 AI)</td><td>새로운 콘텐츠 생성 (ChatGPT 등)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔮</div>
+      <div>
+        <div class="card-title">LLM — 대형언어모델</div>
+        <div class="card-en">Large Language Model</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>ChatGPT, Claude, Gemini의 핵심 기술!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">파라미터</span></td><td>Parameter</td><td>모델의 학습된 가중치 수. GPT-4 ~1조개</td></tr>
+          <tr><td><span class="term">토큰</span></td><td>Token</td><td>텍스트 처리 단위. 1토큰≈한글 1~2자</td></tr>
+          <tr><td><span class="term">컨텍스트 윈도우</span></td><td>Context Window</td><td>한번에 처리 가능한 토큰 양</td></tr>
+          <tr><td><span class="term">프롬프트</span></td><td>Prompt</td><td>AI에게 주는 입력 지시문</td></tr>
+          <tr><td><span class="term">할루시네이션</span></td><td>Hallucination</td><td>AI가 자신있게 틀린 말을 하는 현상</td></tr>
+          <tr><td><span class="term">RAG</span></td><td>Retrieval-Augmented Generation</td><td>외부 DB 검색 + 생성 결합</td></tr>
+          <tr><td><span class="term">파인튜닝</span></td><td>Fine-tuning</td><td>기존 모델을 특정 목적에 맞게 추가학습</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신 모델</div>
+        <span class="badge badge-ai">GPT-4o</span> <span class="badge badge-ai">Claude 3.7 Sonnet</span> <span class="badge badge-ai">Gemini 2.0</span> <span class="badge badge-new">Llama 3.3</span> <span class="badge badge-hot">DeepSeek R2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎨</div>
+      <div>
+        <div class="card-title">이미지 생성 AI 원리</div>
+        <div class="card-en">Diffusion Model & GAN</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🌀 Diffusion Model (확산 모델) — Midjourney, DALL-E <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>노이즈(noise, 잡음) → 점진적 제거 → 이미지 생성!</p>
+          <p>마치 안개 낀 사진을 점점 선명하게 만드는 과정처럼 작동합니다.</p>
+          <p>대표 모델: <span class="term">Stable Diffusion</span>, <span class="term">DALL-E 3</span>, <span class="term">Midjourney</span></p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">⚡ Transformer Architecture — 모든 AI의 기반 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>2017년 구글 논문 "Attention is All You Need"로 시작된 혁명적 구조.</p>
+          <p><span class="term">Attention 메커니즘</span>: 입력 데이터의 중요한 부분에 집중하는 능력.</p>
+          <p>LLM, 이미지 생성, 번역 등 현대 AI의 99%가 이 구조 기반!</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🤖 AI Agent — 2025년의 핵심 트렌드 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p><span class="term">AI 에이전트(Agent)</span>: 목표를 받으면 스스로 계획하고 도구를 사용해 실행하는 AI.</p>
+          <p>예: "여행 계획 짜줘" → 항공권 검색 → 호텔 예약 → 일정표 작성 자동화!</p>
+          <p>대표: <span class="term">AutoGPT</span>, <span class="term">Claude Computer Use</span>, <span class="term">OpenAI Operator</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">AI 학습의 종류</div>
+        <div class="card-en">Types of Machine Learning</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>종류</th><th>원문</th><th>예시</th></tr>
+          <tr><td><span class="term">지도학습</span></td><td>Supervised Learning</td><td>정답 있는 데이터로 학습 (스팸 분류)</td></tr>
+          <tr><td><span class="term">비지도학습</span></td><td>Unsupervised Learning</td><td>정답 없이 패턴 발견 (고객 군집화)</td></tr>
+          <tr><td><span class="term">강화학습</span></td><td>Reinforcement Learning</td><td>보상으로 학습 (알파고, 게임 AI)</td></tr>
+          <tr><td><span class="term">전이학습</span></td><td>Transfer Learning</td><td>기학습 모델을 새 과제에 적용</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="security">
+  <div class="section-title"><div class="dot"></div>🔐 사이버 보안</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚠️</div>
+      <div>
+        <div class="card-title">주요 사이버 공격 유형</div>
+        <div class="card-en">Cyber Attack Types</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>공격</th><th>원문</th><th>방법</th></tr>
+          <tr><td><span class="term">피싱</span></td><td>Phishing</td><td>가짜 사이트/이메일로 정보 탈취</td></tr>
+          <tr><td><span class="term">랜섬웨어</span></td><td>Ransomware</td><td>파일 암호화 후 돈 요구</td></tr>
+          <tr><td><span class="term">DDoS</span></td><td>Distributed Denial of Service</td><td>수백만 요청으로 서버 마비</td></tr>
+          <tr><td><span class="term">SQL 인젝션</span></td><td>SQL Injection</td><td>DB 쿼리 조작으로 데이터 탈취</td></tr>
+          <tr><td><span class="term">소셜 엔지니어링</span></td><td>Social Engineering</td><td>심리 조작으로 정보 취득</td></tr>
+          <tr><td><span class="term">제로데이</span></td><td>Zero-Day Exploit</td><td>패치 전 취약점 공격</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔑</div>
+      <div>
+        <div class="card-title">암호화 기술</div>
+        <div class="card-en">Cryptography</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">대칭키</div>
+          <div class="comp-list">Symmetric<br>같은 키로 암호화·복호화<br>AES-256<br>빠름, 키 공유 문제</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">비대칭키</div>
+          <div class="comp-list">Asymmetric<br>공개키+개인키<br>RSA, ECC<br>HTTPS, 전자서명</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">🛡️ 보안 습관 TOP 5</div>
+        1. 비밀번호 관리자 사용 (1Password, Bitwarden)<br>
+        2. <span class="term">2FA (Two-Factor Authentication)</span> 2단계 인증 필수<br>
+        3. 공용 WiFi에서 VPN 사용<br>
+        4. 소프트웨어 업데이트 즉시 적용<br>
+        5. 모르는 링크/첨부파일 클릭 금지
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cloud">
+  <div class="section-title"><div class="dot"></div>☁️ 클라우드 컴퓨팅</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">☁️</div>
+      <div>
+        <div class="card-title">클라우드란?</div>
+        <div class="card-en">Cloud Computing</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>인터넷을 통해 서버, 스토리지, DB, 네트워킹 등을 제공하는 서비스.</p>
+      <p>"내 컴퓨터에 설치하지 않고, 인터넷으로 빌려쓰는 것!"</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>서비스 모델</th><th>원문</th><th>예시</th><th>제공 범위</th></tr>
+          <tr><td><span class="term">IaaS</span></td><td>Infrastructure as a Service</td><td>AWS EC2</td><td>서버/네트워크</td></tr>
+          <tr><td><span class="term">PaaS</span></td><td>Platform as a Service</td><td>Heroku, Vercel</td><td>개발 플랫폼</td></tr>
+          <tr><td><span class="term">SaaS</span></td><td>Software as a Service</td><td>구글독스, Slack</td><td>완성된 앱</td></tr>
+          <tr><td><span class="term">FaaS</span></td><td>Function as a Service</td><td>AWS Lambda</td><td>서버리스 함수</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div>
+        <div class="card-title">3대 클라우드 공급자</div>
+        <div class="card-en">Cloud Providers: AWS vs Azure vs GCP</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>회사</th><th>서비스</th><th>시장점유율</th><th>강점</th></tr>
+          <tr><td>Amazon</td><td><span class="term">AWS</span></td><td>31%</td><td>가장 많은 서비스, 글로벌 1위</td></tr>
+          <tr><td>Microsoft</td><td><span class="term">Azure</span></td><td>25%</td><td>기업/MS 제품 연동 강함</td></tr>
+          <tr><td>Google</td><td><span class="term">GCP</span></td><td>11%</td><td>AI/빅데이터, Kubernetes</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 트렌드</div><span class="term">서버리스(Serverless)</span>와 <span class="term">엣지 컴퓨팅(Edge Computing)</span>이 대세. 사용자 가까이에서 처리해 초저지연 실현!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🐳</div>
+      <div>
+        <div class="card-title">Docker & Kubernetes</div>
+        <div class="card-en">Container & Orchestration</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">Docker</span>: 앱을 컨테이너에 패키징. "어디서나 같은 환경에서 실행!"</p>
+      <p><span class="term">Kubernetes (K8s)</span>: 수많은 컨테이너를 자동으로 관리·배포·확장.</p>
+      <div class="tip"><div class="tip-label">💡 비유</div>Docker = 음식을 포장하는 도시락 🍱<br>Kubernetes = 수천 개의 도시락을 관리하는 급식 시스템 🏭</div>
+      <div class="code-block">
+<span class="cm"># Docker 기본 명령어</span>
+docker pull ubuntu          <span class="cm"># 이미지 다운로드</span>
+docker run -it ubuntu bash  <span class="cm"># 컨테이너 실행</span>
+docker ps                   <span class="cm"># 실행 중인 컨테이너 목록</span>
+docker stop [ID]            <span class="cm"># 컨테이너 정지</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mobile">
+  <div class="section-title"><div class="dot"></div>📱 모바일 & 최신 트렌드</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📱</div>
+      <div>
+        <div class="card-title">스마트폰 내부 구조</div>
+        <div class="card-en">Smartphone Architecture</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>부품</th><th>원문</th><th>역할</th></tr>
+          <tr><td><span class="term">AP/SoC</span></td><td>Application Processor / System on Chip</td><td>스마트폰의 두뇌 (CPU+GPU+NPU 통합)</td></tr>
+          <tr><td><span class="term">모뎀</span></td><td>Modem</td><td>5G/LTE 통신 담당</td></tr>
+          <tr><td><span class="term">LPDDR5</span></td><td>Low Power DDR5 RAM</td><td>저전력 모바일 램</td></tr>
+          <tr><td><span class="term">UFS 4.0</span></td><td>Universal Flash Storage</td><td>고속 스마트폰 저장장치</td></tr>
+          <tr><td><span class="term">ISP</span></td><td>Image Signal Processor</td><td>카메라 사진 처리 전용 칩</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신 칩</div>Apple M4 (맥북/아이패드), Snapdragon 8 Elite (안드로이드), Samsung Exynos 2500. 모두 <span class="term">온디바이스 AI (On-device AI)</span> 탑재!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚀</div>
+      <div>
+        <div class="card-title">2025년 핵심 기술 트렌드</div>
+        <div class="card-en">Tech Trends 2025</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>기술</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">온디바이스 AI</span></td><td>On-device AI</td><td>클라우드 없이 기기 내 AI 실행</td></tr>
+          <tr><td><span class="term">양자컴퓨팅</span></td><td>Quantum Computing</td><td>양자역학 기반 초고속 연산</td></tr>
+          <tr><td><span class="term">공간컴퓨팅</span></td><td>Spatial Computing</td><td>AR/VR로 현실-디지털 통합 (Vision Pro)</td></tr>
+          <tr><td><span class="term">웹3.0</span></td><td>Web 3.0 / Blockchain</td><td>탈중앙화, 사용자 데이터 소유권</td></tr>
+          <tr><td><span class="term">IoT</span></td><td>Internet of Things</td><td>모든 사물이 인터넷에 연결</td></tr>
+          <tr><td><span class="term">디지털 트윈</span></td><td>Digital Twin</td><td>현실 세계의 디지털 복제본</td></tr>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:13px; font-weight:700; color:var(--gold); margin-bottom:10px;">🔮 곧 다가올 미래 기술</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">AI 에이전트 대중화</div>
+            <div class="tl-desc">스스로 계획·실행하는 AI가 업무 자동화</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2026</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">6G 상용화 준비</div>
+            <div class="tl-desc">Tbps급 초고속 통신, 홀로그램 통화</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2027</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">양자 컴퓨터 실용화</div>
+            <div class="tl-desc">현재 암호화 체계의 전면 개편</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2030</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">AGI 도달 가능성</div>
+            <div class="tl-desc">인간 수준의 범용 인공지능 (AGI) 논의</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">IT 업계 주요 기업</div>
+        <div class="card-en">Big Tech Companies</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>기업</th><th>핵심 기술</th><th>AI 브랜드</th></tr>
+          <tr><td>🍎 Apple</td><td>iPhone, Mac, iOS</td><td>Apple Intelligence</td></tr>
+          <tr><td>🔍 Google</td><td>검색, Android, GCP</td><td>Gemini</td></tr>
+          <tr><td>🪟 Microsoft</td><td>Windows, Azure, Office</td><td>Copilot (GPT-4)</td></tr>
+          <tr><td>📦 Amazon</td><td>AWS, 쇼핑, 물류</td><td>Alexa, Bedrock</td></tr>
+          <tr><td>🤖 OpenAI</td><td>ChatGPT, API</td><td>GPT-4o, o3</td></tr>
+          <tr><td>🔮 Anthropic</td><td>AI 안전 연구</td><td>Claude</td></tr>
+          <tr><td>🎮 NVIDIA</td><td>GPU, CUDA</td><td>AI 인프라 독점</td></tr>
+          <tr><td>🇰🇷 Samsung</td><td>반도체, 스마트폰</td><td>Galaxy AI</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <div class="section-title"><div class="dot"></div>🎮 실력 테스트 퀴즈</div>
+  <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">답을 선택하면 정답/오답을 알려드립니다!</p>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. CPU의 풀네임은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Computer Processing Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Central Processing Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Core Power Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Central Program Unit</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. 1GB는 몇 MB인가요?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">100 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">512 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">1,024 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">10,000 MB</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. HTTPS에서 S의 의미는?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Speed</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Secure</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Server</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Static</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. AI에서 "할루시네이션(Hallucination)"이란?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI가 그림을 그리는 기능</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI의 응답 속도</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">AI가 자신있게 틀린 정보를 말하는 현상</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI 학습 과정의 오류</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. 다음 중 운영체제(OS)가 아닌 것은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Windows 11</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Ubuntu Linux</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Microsoft Word</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Android 15</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. SSD가 HDD보다 빠른 이유는?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">더 큰 용량 때문에</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">물리적 회전 없이 플래시 메모리 사용</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">전기를 더 많이 사용해서</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">인터넷에 연결되어서</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. LLM의 풀네임은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Large Logic Machine</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Layered Learning Model</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Large Language Model</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Local Language Module</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Ctrl+Z의 기능은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">전체 선택</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">저장</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">복사</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">실행 취소 (Undo)</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /content -->
+
+<nav class="bottom-nav">
+  <div class="bn-item active" onclick="showSectionBottom('basics', this)">
+    <span class="bn-icon">🎯</span>
+    <div class="bn-label">기초</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('hardware', this)">
+    <span class="bn-icon">⚙️</span>
+    <div class="bn-label">하드웨어</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('ai', this)">
+    <span class="bn-icon">🤖</span>
+    <div class="bn-label">AI</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('security', this)">
+    <span class="bn-icon">🔐</span>
+    <div class="bn-label">보안</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('quiz', this)">
+    <span class="bn-icon">🎮</span>
+    <div class="bn-label">퀴즈</div>
+  </div>
+</nav>
+
 <script>
-const TOTAL = 8;
-const done = new Set();
-function updateProgress(){const pct=Math.round((done.size/TOTAL)*100);document.getElementById('pbFill').style.width=pct+'%';document.getElementById('pbPct').textContent=pct+'%';document.querySelectorAll('.ch-btn').forEach((b,i)=>{if(done.has(i+1)) b.classList.add('done');});}
-function goChapter(n){document.querySelectorAll('.chapter').forEach(c=>c.classList.remove('on'));document.querySelectorAll('.ch-btn').forEach(b=>b.classList.remove('on'));document.getElementById('ch'+n).classList.add('on');document.querySelectorAll('.ch-btn')[n-1].classList.add('on');window.scrollTo({top:0,behavior:'smooth'});done.add(n);updateProgress();}
-const quizState = {};
-function answerQ(optId,result,qId){if(quizState[qId]) return;quizState[qId]=result;const opts=document.querySelectorAll(`[onclick*="'${qId}'"]`);opts.forEach(o=>o.classList.add('disabled'));document.querySelectorAll('.quiz-opt').forEach(o=>{if(o.getAttribute('onclick')&&o.getAttribute('onclick').includes(`'${optId}'`)){o.classList.add(result);}});const fbEl=document.getElementById(`${qId}-fb-${result}`);if(fbEl){fbEl.classList.add('show',result==='correct'?'ok':'bad');}updateChapterScore(qId);}
-function getChapterFromQ(qId){const map={q1:'ch1',q2:'ch1',q4:'ch2',q6:'ch3',q8:'ch4',q10:'ch5',q13:'ch6',q14:'ch7',q16:'ch8'};return map[qId];}
-const chapterQs={ch1:['q1','q2'],ch2:['q4'],ch3:['q6'],ch4:['q8'],ch5:['q10'],ch6:['q13'],ch7:['q14'],ch8:['q16']};
-function updateChapterScore(qId){const ch=getChapterFromQ(qId);if(!ch) return;const qs=chapterQs[ch];const answered=qs.filter(q=>quizState[q]);if(answered.length===qs.length){const correct=qs.filter(q=>quizState[q]==='correct').length;const scoreEl=document.getElementById(`score-${ch}`);const numEl=document.getElementById(`score-${ch}-num`);if(scoreEl&&numEl){numEl.textContent=`${correct}/${qs.length}`;scoreEl.classList.add('show');}}}
-const desktopInfoMap={desktop:'📌 바탕화면 — 프로그램과 파일 아이콘이 놓이는 공간입니다.',icon:'📁 아이콘 — 더블클릭하면 프로그램이 열립니다.',start:'⊞ 시작 버튼 — 프로그램 실행과 종료의 중심입니다.',search:'🔍 검색창 — 프로그램이나 파일을 찾을 수 있습니다.',tray:'🔔 시스템 트레이 — 볼륨, 와이파이, 시간이 표시됩니다.'};
-function showDesktopInfo(key){const el=document.getElementById('desktopInfo');if(el) el.textContent=desktopInfoMap[key]||'';}
-function winBtn(type){const msg=document.getElementById('winMsg');const win=document.getElementById('demoWin');if(type==='min'){msg.textContent='─ 최소화: 창이 작업표시줄로 사라졌습니다.';if(win) win.style.opacity='0.3';setTimeout(()=>{if(win) win.style.opacity='1';},1500);}else if(type==='max'){msg.textContent='□ 최대화: 창이 화면 전체를 채웁니다!';if(win){win.style.transform='scale(1.02)';setTimeout(()=>win.style.transform='',800);}}else{msg.textContent='✕ 닫기: 프로그램이 완전히 종료됩니다.';if(win){win.style.opacity='0';setTimeout(()=>win.style.opacity='1',1500);}}}
-function setUrl(val){document.getElementById('urlInput').value=val;doSearch();}
-function doSearch(){const val=document.getElementById('urlInput').value.trim();const msg=document.getElementById('searchMsg');if(!val){msg.textContent='주소나 검색어를 입력하세요!';return;}if(val.includes('.')){msg.textContent=`🌐 ${val} 사이트로 이동합니다!`;}else{msg.textContent=`🔍 "${val}" 검색 결과를 보여줍니다!`;}}
-let monitorOn=false,bodyOn=false;
-function demoClick(type){const msg=document.getElementById('demoMsg1');if(type==='monitor'&&!monitorOn){monitorOn=true;document.getElementById('btn_monitor').style.background='linear-gradient(135deg,#26a050,#155c30)';document.getElementById('btn_monitor').textContent='✅ 모니터 켜짐!';document.getElementById('btn_body').disabled=false;document.getElementById('btn_body').style.opacity='1';document.getElementById('btn_body').style.cursor='pointer';msg.textContent='✅ 모니터 켜짐! 이제 본체 전원을 켜보세요!';}else if(type==='body'&&monitorOn&&!bodyOn){bodyOn=true;document.getElementById('btn_body').style.background='linear-gradient(135deg,#26a050,#155c30)';document.getElementById('btn_body').textContent='✅ 본체 켜짐!';msg.textContent='✅ 본체 켜짐!';}}
-function showComplete(){document.getElementById('completeBanner').classList.add('show');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});for(let i=1;i<=8;i++) done.add(i);updateProgress();}
-updateProgress();
+function showSection(id, chipEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  if(chipEl) chipEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showSectionBottom(id, bnEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  if(bnEl) bnEl.classList.add('active');
+  window.scrollTo(0, 0);
+  const chipMap = {basics:'🎯 기초', hardware:'⚙️ 하드웨어', ai:'🤖 AI/딥러닝', security:'🔐 보안', quiz:'🎮 퀴즈'};
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.remove('active');
+    if(c.textContent.trim() === (chipMap[id]||'')) c.classList.add('active');
+  });
+}
+
+function toggleAcc(el) {
+  el.classList.toggle('open');
+}
+
+function checkQuiz(el, correct) {
+  const opts = el.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(o => {
+    o.style.pointerEvents = 'none';
+    o.style.opacity = '0.6';
+  });
+  el.style.opacity = '1';
+  if(correct) {
+    el.classList.add('correct');
+    el.innerHTML += ' ✅ 정답!';
+  } else {
+    el.classList.add('wrong');
+    el.innerHTML += ' ❌ 오답!';
+  }
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if(!q) return;
+  const keywords = {
+    'cpu': 'hardware', '하드웨어': 'hardware', 'gpu': 'hardware', '메모리': 'hardware', 'ram': 'hardware', 'ssd': 'hardware',
+    '인터넷': 'internet', 'http': 'internet', 'dns': 'internet', '네트워크': 'internet', '5g': 'internet',
+    '파이썬': 'programming', 'python': 'programming', '자바': 'programming', 'javascript': 'programming', 'git': 'programming', '코딩': 'programming',
+    'ai': 'ai', '인공지능': 'ai', 'gpt': 'ai', 'llm': 'ai', '딥러닝': 'ai', '머신러닝': 'ai', '클로드': 'ai',
+    '해킹': 'security', '보안': 'security', '암호화': 'security', '피싱': 'security', '랜섬웨어': 'security',
+    '클라우드': 'cloud', 'aws': 'cloud', 'docker': 'cloud', 'kubernetes': 'cloud',
+    '기초': 'basics', '컴퓨터': 'basics', '운영체제': 'basics', 'os': 'basics',
+    '모바일': 'mobile', '스마트폰': 'mobile', '트렌드': 'mobile',
+    '퀴즈': 'quiz', '테스트': 'quiz'
+  };
+  for(let [key, section] of Object.entries(keywords)) {
+    if(q.includes(key)) {
+      const chips = document.querySelectorAll('.chip');
+      const sectionMap = {basics:0, hardware:1, software:2, internet:3, programming:4, ai:5, security:6, cloud:7, mobile:8, quiz:9};
+      showSection(section, chips[sectionMap[section]]);
+      return;
+    }
+  }
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(f => {
+        const w = f.getAttribute('data-width');
+        if(w) f.style.width = w;
+      });
+    }
+  });
+});
+document.querySelectorAll('.card').forEach(c => observer.observe(c));
 </script>
 </body>
 </html>
