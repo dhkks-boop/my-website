@@ -1,0 +1,1699 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>💻 컴퓨터 완전정복 백과사전</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --card: #1a1a28;
+  --card2: #1e1e30;
+  --accent: #00f5ff;
+  --accent2: #ff6b35;
+  --accent3: #a855f7;
+  --accent4: #22c55e;
+  --gold: #fbbf24;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: rgba(0,245,255,0.15);
+  --glow: 0 0 20px rgba(0,245,255,0.3);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* ── HEADER ── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,15,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-shadow: var(--glow);
+}
+.logo span { color: var(--accent2); }
+.header-badge {
+  font-size: 10px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent));
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 40px 16px 32px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0,245,255,0.08) 0%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(168,85,247,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255,107,53,0.05) 0%, transparent 50%);
+}
+.hero-emoji { font-size: 48px; display: block; margin-bottom: 12px; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.hero h1 {
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.hero h1 .hl { color: var(--accent); }
+.hero h1 .hl2 { color: var(--accent2); }
+.hero-sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+.hero-stats {
+  display: flex; justify-content: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.hero-link-main {
+  background: linear-gradient(135deg, var(--accent), #67e8f9);
+  color: var(--bg);
+  box-shadow: var(--glow);
+}
+.hero-link-sub {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.hero-link:hover {
+  transform: translateY(-2px);
+}
+.hero-link-sub:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label { font-size: 11px; color: var(--muted); }
+
+/* ── SEARCH ── */
+.search-wrap {
+  padding: 16px;
+  position: relative;
+}
+.search-box {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 48px 14px 16px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'Noto Sans KR', sans-serif;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.search-box:focus {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+.search-box::placeholder { color: var(--muted); }
+.search-icon {
+  position: absolute; right: 30px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+/* ── NAV CHIPS ── */
+.nav-chips {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px 16px 16px;
+  scrollbar-width: none;
+}
+.nav-chips::-webkit-scrollbar { display: none; }
+.chip {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.chip:hover, .chip.active {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 8px 16px 24px;
+  display: none;
+}
+.section.active { display: block; }
+.section-title {
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: var(--glow);
+}
+
+/* ── CARDS ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: border-color 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover::before { opacity: 1; }
+.card:hover {
+  border-color: rgba(0,245,255,0.3);
+  transform: translateY(-2px);
+}
+.card-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 12px;
+}
+.card-icon {
+  font-size: 28px;
+  width: 48px; height: 48px;
+  background: var(--card2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.card-en {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.card-body { font-size: 14px; color: var(--text); line-height: 1.8; }
+.card-body p { margin-bottom: 10px; }
+.card-body p:last-child { margin-bottom: 0; }
+
+/* ── TERM HIGHLIGHT ── */
+.term {
+  display: inline-block;
+  background: rgba(0,245,255,0.1);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,245,255,0.2);
+}
+.term-kr {
+  color: var(--accent2);
+  font-weight: 700;
+}
+.highlight { color: var(--gold); font-weight: 700; }
+.tip {
+  background: rgba(168,85,247,0.1);
+  border-left: 3px solid var(--accent3);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.tip-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent3);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.warn {
+  background: rgba(255,107,53,0.1);
+  border-left: 3px solid var(--accent2);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.warn-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent2);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.success {
+  background: rgba(34,197,94,0.1);
+  border-left: 3px solid var(--accent4);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: #0d1117;
+  border: 1px solid rgba(0,245,255,0.1);
+  border-radius: 10px;
+  padding: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  overflow-x: auto;
+  margin: 10px 0;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+.code-block .kw { color: #ff7b72; }
+.code-block .str { color: #a5d6ff; }
+.code-block .cm { color: #8b949e; }
+.code-block .fn { color: #d2a8ff; }
+.code-block .num { color: #79c0ff; }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; margin: 10px 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: var(--card2);
+  color: var(--accent);
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(0,245,255,0.03); }
+
+/* ── BADGE ── */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+.badge-new { background: rgba(34,197,94,0.2); color: var(--accent4); border: 1px solid rgba(34,197,94,0.3); }
+.badge-hot { background: rgba(255,107,53,0.2); color: var(--accent2); border: 1px solid rgba(255,107,53,0.3); }
+.badge-ai { background: rgba(168,85,247,0.2); color: var(--accent3); border: 1px solid rgba(168,85,247,0.3); }
+.badge-basic { background: rgba(0,245,255,0.15); color: var(--accent); border: 1px solid var(--border); }
+
+/* ── ACCORDION ── */
+.accordion {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.acc-header {
+  padding: 14px 16px;
+  background: var(--card);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.acc-header:hover { background: var(--card2); }
+.acc-arrow {
+  color: var(--accent);
+  transition: transform 0.3s;
+  font-size: 18px;
+}
+.accordion.open .acc-arrow { transform: rotate(180deg); }
+.acc-body {
+  display: none;
+  padding: 16px;
+  background: var(--card2);
+  font-size: 14px;
+  line-height: 1.8;
+  border-top: 1px solid var(--border);
+}
+.accordion.open .acc-body { display: block; }
+
+/* ── QUIZ ── */
+.quiz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.quiz-q {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quiz-opt {
+  padding: 12px 16px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.quiz-opt:hover { border-color: var(--accent); }
+.quiz-opt.correct { background: rgba(34,197,94,0.2); border-color: var(--accent4); color: var(--accent4); }
+.quiz-opt.wrong { background: rgba(255,107,53,0.2); border-color: var(--accent2); color: var(--accent2); }
+
+/* ── TIMELINE ── */
+.timeline { padding: 8px 0; }
+.tl-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 30px; top: 36px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+.tl-item:last-child::before { display: none; }
+.tl-year {
+  width: 60px;
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: center;
+  padding-top: 2px;
+}
+.tl-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 5px;
+  box-shadow: var(--glow);
+}
+.tl-content { flex: 1; }
+.tl-title { font-weight: 700; margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: var(--muted); }
+
+/* ── PROGRESS BAR ── */
+.skill-bar { margin-bottom: 12px; }
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.skill-track {
+  height: 6px;
+  background: var(--card2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transition: width 1s ease;
+}
+
+/* ── GRID 2 ── */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.mini-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.mini-card .icon { font-size: 24px; margin-bottom: 6px; }
+.mini-card .label { font-size: 12px; font-weight: 700; color: var(--accent); }
+.mini-card .val { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,15,0.98);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bn-item {
+  flex: 1;
+  padding: 10px 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s;
+  color: var(--muted);
+}
+.bn-item.active { color: var(--accent); }
+.bn-icon { font-size: 20px; display: block; }
+.bn-label { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+
+/* ── CONTENT PAD ── */
+.content { padding-bottom: 80px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.section.active { animation: fadeIn 0.3s ease; }
+
+/* ── SPECIAL ── */
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent));
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 16px 0;
+}
+.trending-tag {
+  display: inline-block;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.trending-tag:hover { color: var(--accent); border-color: var(--accent); }
+.big-number {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+}
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0;
+}
+.comp-box {
+  background: var(--card2);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.comp-title { font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+.comp-list { font-size: 12px; color: var(--muted); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">💻 <span>COMP</span>MASTER</div>
+  <div class="header-badge">2025 최신판</div>
+</header>
+
+<div class="content">
+
+<!-- HERO -->
+<div class="hero" id="home-hero">
+  <span class="hero-emoji">🚀</span>
+  <h1>컴퓨터 <span class="hl">완전정복</span><br><span class="hl2">백과사전</span></h1>
+  <p class="hero-sub">컴맹부터 AI 전문가까지 · 기초~최첨단 한방에</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">200+</div><div class="stat-label">핵심 개념</div></div>
+    <div class="stat"><div class="stat-num">10개</div><div class="stat-label">분야</div></div>
+    <div class="stat"><div class="stat-num">2025</div><div class="stat-label">최신 업데이트</div></div>
+  </div>
+  <div class="hero-actions">
+    <a class="hero-link hero-link-main" href="https://dhkks-boop.github.io/my-website/github-guide.html">GitHub 설명 바로가기</a>
+    <a class="hero-link hero-link-sub" href="https://github.com/dhkks-boop/my-website" target="_blank" rel="noreferrer">저장소 보기</a>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <input class="search-box" id="searchInput" type="text" placeholder="🔍 검색: CPU, AI, 클라우드, 해킹...">
+  <span class="search-icon">🔍</span>
+</div>
+
+<!-- NAV CHIPS -->
+<div class="nav-chips">
+  <div class="chip active" onclick="showSection('basics', this)">🎯 기초</div>
+  <div class="chip" onclick="showSection('hardware', this)">⚙️ 하드웨어</div>
+  <div class="chip" onclick="showSection('software', this)">💾 소프트웨어</div>
+  <div class="chip" onclick="showSection('internet', this)">🌐 인터넷</div>
+  <div class="chip" onclick="showSection('programming', this)">👨‍💻 프로그래밍</div>
+  <div class="chip" onclick="showSection('ai', this)">🤖 AI/딥러닝</div>
+  <div class="chip" onclick="showSection('security', this)">🔐 보안</div>
+  <div class="chip" onclick="showSection('cloud', this)">☁️ 클라우드</div>
+  <div class="chip" onclick="showSection('mobile', this)">📱 모바일</div>
+  <div class="chip" onclick="showSection('quiz', this)">🎮 퀴즈</div>
+</div>
+
+<section class="section active" id="basics">
+  <div class="section-title"><div class="dot"></div>컴퓨터 기초 A to Z</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💡</div>
+      <div>
+        <div class="card-title">컴퓨터란 무엇인가?</div>
+        <div class="card-en">What is a Computer?</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>컴퓨터(<span class="term">Computer</span>)는 <span class="term-kr">데이터(자료)를 입력받아 처리하고 결과를 출력하는 전자 기계</span>입니다.</p>
+      <p>핵심 동작 원리: <span class="highlight">입력 → 처리 → 저장 → 출력</span></p>
+      <div class="grid2">
+        <div class="mini-card"><div class="icon">⌨️</div><div class="label">입력 (Input)</div><div class="val">키보드, 마우스, 마이크</div></div>
+        <div class="mini-card"><div class="icon">🧠</div><div class="label">처리 (Process)</div><div class="val">CPU가 계산 수행</div></div>
+        <div class="mini-card"><div class="icon">💾</div><div class="label">저장 (Storage)</div><div class="val">SSD, HDD, RAM</div></div>
+        <div class="mini-card"><div class="icon">🖥️</div><div class="label">출력 (Output)</div><div class="val">모니터, 스피커, 프린터</div></div>
+      </div>
+      <div class="tip"><div class="tip-label">💡 쉽게 이해하기</div>컴퓨터는 엄청 빠른 계산기입니다! 초당 수십억 번의 연산을 처리하죠. 우리가 앱을 클릭하면 → CPU가 계산하고 → 화면에 표시합니다.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔢</div>
+      <div>
+        <div class="card-title">2진법 — 컴퓨터의 언어</div>
+        <div class="card-en">Binary System (이진수)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>컴퓨터는 오직 <span class="highlight">0과 1</span>만 이해합니다. 왜? 전기가 <span class="term">OFF(0)</span> 또는 <span class="term">ON(1)</span> 두 가지 상태이기 때문!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>단위</th><th>원문</th><th>크기</th><th>예시</th></tr>
+          <tr><td><span class="term">bit</span></td><td>Binary digit</td><td>0 또는 1</td><td>가장 작은 단위</td></tr>
+          <tr><td><span class="term">byte</span></td><td>Byte</td><td>8 bits</td><td>영문자 1개</td></tr>
+          <tr><td><span class="term">KB</span></td><td>Kilobyte</td><td>1,024 bytes</td><td>짧은 문서</td></tr>
+          <tr><td><span class="term">MB</span></td><td>Megabyte</td><td>1,024 KB</td><td>노래 1곡(3~5MB)</td></tr>
+          <tr><td><span class="term">GB</span></td><td>Gigabyte</td><td>1,024 MB</td><td>영화 1편(1~4GB)</td></tr>
+          <tr><td><span class="term">TB</span></td><td>Terabyte</td><td>1,024 GB</td><td>외장하드</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">💡 재미있는 사실</div>'Hello'라는 5글자 = 5 bytes = 40 bits = 40개의 0과 1로 저장됩니다!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🖥️</div>
+      <div>
+        <div class="card-title">운영체제 (OS)</div>
+        <div class="card-en">Operating System</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">OS (Operating System)</span> = <span class="term-kr">운영체제</span>는 컴퓨터의 모든 것을 관리하는 총사령관입니다.</p>
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title">🪟 Windows</div>
+          <div class="comp-list">마이크로소프트<br>PC 시장 73%<br>게임에 강함<br>기업 환경</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">🍎 macOS</div>
+          <div class="comp-list">애플<br>디자이너 선호<br>보안 우수<br>iOS 연동</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">🐧 Linux</div>
+          <div class="comp-list">오픈소스(무료)<br>서버의 95%<br>개발자 필수<br>커스텀 가능</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title">📱 Android</div>
+          <div class="comp-list">구글+리눅스<br>스마트폰 72%<br>오픈소스<br>삼성/LG 등</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📁</div>
+      <div>
+        <div class="card-title">파일과 폴더 완벽 이해</div>
+        <div class="card-en">File & Folder (Directory)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">파일(File)</span>: 데이터의 집합. 이름+확장자로 구성됩니다.<br>예: <span class="term">report.docx</span>, <span class="term">photo.jpg</span>, <span class="term">song.mp3</span></p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>확장자</th><th>Full Name</th><th>용도</th></tr>
+          <tr><td><span class="term">.jpg / .png</span></td><td>JPEG/PNG Image</td><td>사진, 이미지</td></tr>
+          <tr><td><span class="term">.mp4</span></td><td>MPEG-4 Video</td><td>동영상</td></tr>
+          <tr><td><span class="term">.mp3</span></td><td>MPEG Audio Layer 3</td><td>음악</td></tr>
+          <tr><td><span class="term">.pdf</span></td><td>Portable Document Format</td><td>문서</td></tr>
+          <tr><td><span class="term">.zip</span></td><td>Compressed Archive</td><td>압축파일</td></tr>
+          <tr><td><span class="term">.exe</span></td><td>Executable File</td><td>실행파일(윈도우)</td></tr>
+          <tr><td><span class="term">.html</span></td><td>HyperText Markup Language</td><td>웹페이지</td></tr>
+          <tr><td><span class="term">.py</span></td><td>Python Script</td><td>파이썬 코드</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⌨️</div>
+      <div>
+        <div class="card-title">꼭 알아야 할 단축키</div>
+        <div class="card-en">Keyboard Shortcuts</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>단축키</th><th>기능</th><th>영문 의미</th></tr>
+          <tr><td><span class="term">Ctrl+C</span></td><td>복사</td><td>Copy</td></tr>
+          <tr><td><span class="term">Ctrl+V</span></td><td>붙여넣기</td><td>Paste</td></tr>
+          <tr><td><span class="term">Ctrl+Z</span></td><td>실행취소</td><td>Undo</td></tr>
+          <tr><td><span class="term">Ctrl+S</span></td><td>저장</td><td>Save</td></tr>
+          <tr><td><span class="term">Ctrl+A</span></td><td>전체선택</td><td>Select All</td></tr>
+          <tr><td><span class="term">Alt+F4</span></td><td>프로그램 종료</td><td>Force Quit</td></tr>
+          <tr><td><span class="term">Win+D</span></td><td>바탕화면</td><td>Desktop</td></tr>
+          <tr><td><span class="term">Ctrl+Alt+Del</span></td><td>작업관리자</td><td>Task Manager</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hardware">
+  <div class="section-title"><div class="dot"></div>⚙️ 하드웨어 완전 해부</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">CPU — 컴퓨터의 두뇌</div>
+        <div class="card-en">Central Processing Unit (중앙처리장치)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>CPU는 모든 계산과 명령 처리를 담당합니다. 인텔(Intel)과 AMD가 양대산맥.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>의미</th></tr>
+          <tr><td><span class="term">클럭 속도</span></td><td>Clock Speed / GHz</td><td>초당 연산 횟수. 4GHz = 40억회/초</td></tr>
+          <tr><td><span class="term">코어</span></td><td>Core</td><td>CPU 안의 독립 처리 유닛. 많을수록 멀티태스킹↑</td></tr>
+          <tr><td><span class="term">스레드</span></td><td>Thread</td><td>코어가 동시에 처리하는 작업 흐름</td></tr>
+          <tr><td><span class="term">캐시</span></td><td>Cache Memory</td><td>CPU 초고속 임시메모리 (L1/L2/L3)</td></tr>
+          <tr><td><span class="term">TDP</span></td><td>Thermal Design Power</td><td>CPU 발열량(와트). 높을수록 성능↑열↑</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신</div>Intel Core Ultra 200 시리즈, AMD Ryzen 9000 시리즈 출시. <span class="term">NPU(Neural Processing Unit)</span> 내장으로 AI 가속 기능 탑재!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">💾</div>
+      <div>
+        <div class="card-title">RAM vs SSD vs HDD</div>
+        <div class="card-en">Memory & Storage 완전 비교</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">💾 RAM (Random Access Memory) — 작업 메모리 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>컴퓨터가 현재 실행 중인 프로그램의 데이터를 저장하는 <span class="term-kr">임시 메모리</span>입니다.</p>
+          <p>📌 <span class="term">휘발성(Volatile)</span>: 전원 끄면 데이터 사라짐!</p>
+          <p>현재 주류: <span class="term">DDR5</span> (2025년 기준, 최대 6400MHz)</p>
+          <p>권장: 게임용 16GB, 영상편집 32GB, 서버 64GB+</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">⚡ SSD (Solid State Drive) — 빠른 저장장치 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>플래시 메모리를 사용한 저장장치. HDD보다 <span class="highlight">5~10배 빠름!</span></p>
+          <p><span class="term">NVMe SSD</span>: PCIe 통신방식, 7,000MB/s (HDD는 150MB/s)</p>
+          <p><span class="term">SATA SSD</span>: 구형 인터페이스, 550MB/s, 저렴</p>
+          <p>2025년 현재: <span class="term">PCIe 5.0 NVMe</span>는 14,000MB/s 돌파!</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🔄 HDD (Hard Disk Drive) — 대용량 저장장치 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>자기 원판을 물리적으로 회전시켜 데이터 저장.</p>
+          <p>장점: 저렴한 대용량 (TB급)</p>
+          <p>단점: 느림, 충격에 약함, 소음</p>
+          <p>2025년 HDD: HAMR 기술로 <span class="term">32TB</span>까지 출시!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎮</div>
+      <div>
+        <div class="card-title">GPU — 그래픽 처리 장치</div>
+        <div class="card-en">Graphics Processing Unit</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>원래는 게임 그래픽 담당이었지만, 지금은 <span class="highlight">AI 학습의 핵심!</span></p>
+      <p>CPU는 수십 개의 강력한 코어 vs GPU는 수천~수만 개의 작은 코어로 병렬처리.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>의미</th></tr>
+          <tr><td><span class="term">VRAM</span></td><td>Video RAM — GPU 전용 메모리. AI 모델 크기 결정!</td></tr>
+          <tr><td><span class="term">CUDA</span></td><td>엔비디아의 GPU 병렬 연산 플랫폼 (AI 필수)</td></tr>
+          <tr><td><span class="term">DLSS</span></td><td>Deep Learning Super Sampling — AI로 화질 향상</td></tr>
+          <tr><td><span class="term">Ray Tracing</span></td><td>광선 추적 — 빛 반사를 현실적으로 표현</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 핫이슈</div>NVIDIA RTX 5090 출시 (2025년). <span class="term">VRAM 32GB</span>, 초당 125 TOPS AI 연산. 가격은 약 250만원... 😅</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="software">
+  <div class="section-title"><div class="dot"></div>💾 소프트웨어 세계</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📦</div>
+      <div>
+        <div class="card-title">소프트웨어의 종류</div>
+        <div class="card-en">Types of Software</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>종류</th><th>원문</th><th>예시</th></tr>
+          <tr><td><span class="term-kr">시스템 소프트웨어</span></td><td>System Software</td><td>Windows, macOS, Linux</td></tr>
+          <tr><td><span class="term-kr">응용 소프트웨어</span></td><td>Application Software</td><td>Word, Chrome, Photoshop</td></tr>
+          <tr><td><span class="term-kr">미들웨어</span></td><td>Middleware</td><td>데이터베이스 드라이버, API</td></tr>
+          <tr><td><span class="term-kr">오픈소스</span></td><td>Open Source Software</td><td>Linux, VLC, Firefox</td></tr>
+          <tr><td><span class="term-kr">상용 소프트웨어</span></td><td>Commercial/Proprietary</td><td>MS Office, Adobe CC</td></tr>
+          <tr><td><span class="term-kr">펌웨어</span></td><td>Firmware</td><td>라우터, 프린터 내장 소프트웨어</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔄</div>
+      <div>
+        <div class="card-title">프로세스와 스레드</div>
+        <div class="card-en">Process & Thread</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">프로세스(Process)</span>: 실행 중인 프로그램. 독립된 메모리 공간 보유.</p>
+      <p><span class="term">스레드(Thread)</span>: 프로세스 안의 실행 단위. 한 프로세스가 여러 스레드 운영 가능.</p>
+      <div class="tip"><div class="tip-label">💡 예시</div>크롬 브라우저(프로세스) 안에서 여러 탭(스레드)이 동시에 작동하는 것처럼!</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>상태</th><th>원문</th><th>의미</th></tr>
+          <tr><td>준비</td><td>Ready</td><td>CPU 배정 대기 중</td></tr>
+          <tr><td>실행</td><td>Running</td><td>CPU가 현재 처리 중</td></tr>
+          <tr><td>대기</td><td>Waiting/Blocked</td><td>I/O 처리 기다리는 중</td></tr>
+          <tr><td>종료</td><td>Terminated</td><td>실행 완료</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗄️</div>
+      <div>
+        <div class="card-title">데이터베이스 (DB)</div>
+        <div class="card-en">Database — 모든 앱의 기반</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>데이터를 체계적으로 저장하고 관리하는 시스템.</p>
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">관계형 DB</div>
+          <div class="comp-list">SQL 사용<br>표(Table) 형태<br>MySQL, PostgreSQL<br>Oracle, SQLite</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">비관계형 DB</div>
+          <div class="comp-list">NoSQL<br>유연한 구조<br>MongoDB, Redis<br>Cassandra</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">📌 SQL 기본 문법</div></div>
+      <div class="code-block">
+<span class="cm">-- 데이터 조회</span>
+<span class="kw">SELECT</span> 이름, 나이 <span class="kw">FROM</span> 회원
+<span class="kw">WHERE</span> 나이 > <span class="num">20</span>
+<span class="kw">ORDER BY</span> 이름;
+
+<span class="cm">-- 데이터 삽입</span>
+<span class="kw">INSERT INTO</span> 회원 (이름, 나이)
+<span class="kw">VALUES</span> (<span class="str">'홍길동'</span>, <span class="num">25</span>);
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="internet">
+  <div class="section-title"><div class="dot"></div>🌐 인터넷 & 네트워크</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌍</div>
+      <div>
+        <div class="card-title">인터넷은 어떻게 동작하나?</div>
+        <div class="card-en">How the Internet Works</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>인터넷(Internet)은 전 세계 컴퓨터를 연결하는 <span class="term-kr">거대한 네트워크</span>입니다.</p>
+      <p>데이터는 <span class="term">패킷(Packet)</span>으로 쪼개져 전송됩니다. 각 패킷은 독립적으로 이동 후 목적지에서 재조합!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>의미</th></tr>
+          <tr><td><span class="term">IP 주소</span></td><td>IP Address</td><td>인터넷상의 컴퓨터 주소 (192.168.1.1)</td></tr>
+          <tr><td><span class="term">DNS</span></td><td>Domain Name System</td><td>도메인↔IP 변환 전화번호부</td></tr>
+          <tr><td><span class="term">HTTP/HTTPS</span></td><td>HyperText Transfer Protocol (Secure)</td><td>웹 데이터 전송 규약</td></tr>
+          <tr><td><span class="term">라우터</span></td><td>Router</td><td>패킷의 경로를 결정하는 장치</td></tr>
+          <tr><td><span class="term">방화벽</span></td><td>Firewall</td><td>악성 트래픽 차단 시스템</td></tr>
+          <tr><td><span class="term">VPN</span></td><td>Virtual Private Network</td><td>암호화된 가상 사설망</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📡</div>
+      <div>
+        <div class="card-title">네트워크 세대 비교</div>
+        <div class="card-en">Network Generation: 3G → 4G → 5G → 6G</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>세대</th><th>최대속도</th><th>지연시간</th><th>특징</th></tr>
+          <tr><td><span class="term">3G</span></td><td>14 Mbps</td><td>~100ms</td><td>스마트폰 인터넷</td></tr>
+          <tr><td><span class="term">4G LTE</span></td><td>150 Mbps</td><td>~30ms</td><td>유튜브, 스트리밍</td></tr>
+          <tr><td><span class="term">5G</span></td><td>20 Gbps</td><td>1ms</td><td>자율주행, IoT</td></tr>
+          <tr><td><span class="term">6G</span></td><td>1 Tbps</td><td>0.1ms</td><td>2030년 예상, 홀로그램</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 5G의 혁명</div>5G의 1ms 지연은 사람 반응속도(200ms)보다 200배 빠릅니다. 이래서 자율주행차에 필수!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔗</div>
+      <div>
+        <div class="card-title">프로토콜 완전 정리</div>
+        <div class="card-en">Network Protocols</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>프로토콜</th><th>Full Name</th><th>용도</th></tr>
+          <tr><td><span class="term">TCP</span></td><td>Transmission Control Protocol</td><td>신뢰성 있는 데이터 전송</td></tr>
+          <tr><td><span class="term">UDP</span></td><td>User Datagram Protocol</td><td>빠른 전송(게임, 영상통화)</td></tr>
+          <tr><td><span class="term">HTTP/S</span></td><td>HyperText Transfer Protocol</td><td>웹 페이지 전송</td></tr>
+          <tr><td><span class="term">FTP</span></td><td>File Transfer Protocol</td><td>파일 전송</td></tr>
+          <tr><td><span class="term">SMTP</span></td><td>Simple Mail Transfer Protocol</td><td>이메일 발송</td></tr>
+          <tr><td><span class="term">SSH</span></td><td>Secure Shell</td><td>원격 서버 안전 접속</td></tr>
+          <tr><td><span class="term">WebSocket</span></td><td>WebSocket Protocol</td><td>실시간 양방향 통신(채팅)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="programming">
+  <div class="section-title"><div class="dot"></div>👨‍💻 프로그래밍 입문</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🗺️</div>
+      <div>
+        <div class="card-title">프로그래밍 언어 지도</div>
+        <div class="card-en">Programming Languages Map</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>언어</th><th>특징</th><th>주요 용도</th><th>난이도</th></tr>
+          <tr><td><span class="term">Python</span></td><td>쉽고 간결</td><td>AI, 데이터, 자동화</td><td>⭐⭐</td></tr>
+          <tr><td><span class="term">JavaScript</span></td><td>웹 표준</td><td>웹 프론트엔드/백엔드</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Java</span></td><td>안정성↑</td><td>기업 서버, 안드로이드</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">C/C++</span></td><td>빠른 속도</td><td>게임엔진, OS, 임베디드</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Rust</span></td><td>안전+빠름</td><td>시스템 프로그래밍</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Swift</span></td><td>iOS 전용</td><td>아이폰/맥 앱</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">Go</span></td><td>구글 개발</td><td>클라우드, 마이크로서비스</td><td>⭐⭐⭐</td></tr>
+          <tr><td><span class="term">TypeScript</span></td><td>JS + 타입</td><td>대형 웹 프로젝트</td><td>⭐⭐⭐</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🐍</div>
+      <div>
+        <div class="card-title">파이썬 기초 맛보기</div>
+        <div class="card-en">Python Basics</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>파이썬은 영어처럼 읽히는 가장 배우기 쉬운 언어!</p>
+      <div class="code-block">
+<span class="cm"># 변수(Variable): 데이터를 담는 상자</span>
+이름 = <span class="str">"홍길동"</span>
+나이 = <span class="num">25</span>
+키 = <span class="num">175.5</span>
+
+<span class="cm"># 출력 (print)</span>
+<span class="fn">print</span>(<span class="str">f"안녕! 나는 {이름}, {나이}살이야"</span>)
+
+<span class="cm"># 조건문 (if / elif / else)</span>
+<span class="kw">if</span> 나이 >= <span class="num">18</span>:
+    <span class="fn">print</span>(<span class="str">"성인입니다"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"미성년자입니다"</span>)
+
+<span class="cm"># 반복문 (for loop)</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="str">f"{i}번째 반복!"</span>)
+
+<span class="cm"># 함수 (Function): 재사용 가능한 코드 묶음</span>
+<span class="kw">def</span> <span class="fn">인사하기</span>(이름):
+    <span class="kw">return</span> <span class="str">f"안녕하세요, {이름}님!"</span>
+
+<span class="fn">print</span>(<span class="fn">인사하기</span>(<span class="str">"철수"</span>))
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌐</div>
+      <div>
+        <div class="card-title">웹 개발 구조</div>
+        <div class="card-en">Web Development Stack</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">프론트엔드</div>
+          <div class="comp-list">Frontend<br>HTML (구조)<br>CSS (디자인)<br>JavaScript (동작)<br>React/Vue</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">백엔드</div>
+          <div class="comp-list">Backend<br>Node.js<br>Python(Django)<br>Java(Spring)<br>데이터베이스</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">📌 Full Stack</div>프론트엔드 + 백엔드 모두 개발하는 개발자를 <span class="term">풀스택(Full Stack) 개발자</span>라고 합니다!</div>
+      <p>2025년 인기 기술스택: <span class="badge badge-hot">Next.js</span> <span class="badge badge-new">Bun</span> <span class="badge badge-ai">Vercel AI SDK</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔧</div>
+      <div>
+        <div class="card-title">개발 필수 도구들</div>
+        <div class="card-en">Developer Tools</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>도구</th><th>원문</th><th>역할</th></tr>
+          <tr><td><span class="term">Git</span></td><td>Version Control System</td><td>코드 변경 이력 관리</td></tr>
+          <tr><td><span class="term">GitHub</span></td><td>Git Repository Hosting</td><td>코드 공유 플랫폼</td></tr>
+          <tr><td><span class="term">Docker</span></td><td>Container Platform</td><td>앱을 컨테이너에 패키징</td></tr>
+          <tr><td><span class="term">VS Code</span></td><td>Visual Studio Code</td><td>가장 인기있는 코드 편집기</td></tr>
+          <tr><td><span class="term">API</span></td><td>Application Programming Interface</td><td>프로그램 간 통신 창구</td></tr>
+          <tr><td><span class="term">CI/CD</span></td><td>Continuous Integration/Delivery</td><td>자동 빌드·배포 파이프라인</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai">
+  <div class="section-title"><div class="dot"></div>🤖 AI & 딥러닝 최첨단</div>
+
+  <span class="badge badge-hot">🔥 2025 최신</span>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🧠</div>
+      <div>
+        <div class="card-title">AI의 계층 구조</div>
+        <div class="card-en">AI Hierarchy: AI → ML → DL → GenAI</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>계층</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">AI</span></td><td>Artificial Intelligence (인공지능)</td><td>인간 지능을 모방하는 모든 기술</td></tr>
+          <tr><td><span class="term">ML</span></td><td>Machine Learning (머신러닝)</td><td>데이터로 스스로 학습하는 AI</td></tr>
+          <tr><td><span class="term">DL</span></td><td>Deep Learning (딥러닝)</td><td>신경망 기반 ML. 이미지·음성 최강</td></tr>
+          <tr><td><span class="term">GenAI</span></td><td>Generative AI (생성형 AI)</td><td>새로운 콘텐츠 생성 (ChatGPT 등)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔮</div>
+      <div>
+        <div class="card-title">LLM — 대형언어모델</div>
+        <div class="card-en">Large Language Model</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>ChatGPT, Claude, Gemini의 핵심 기술!</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>용어</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">파라미터</span></td><td>Parameter</td><td>모델의 학습된 가중치 수. GPT-4 ~1조개</td></tr>
+          <tr><td><span class="term">토큰</span></td><td>Token</td><td>텍스트 처리 단위. 1토큰≈한글 1~2자</td></tr>
+          <tr><td><span class="term">컨텍스트 윈도우</span></td><td>Context Window</td><td>한번에 처리 가능한 토큰 양</td></tr>
+          <tr><td><span class="term">프롬프트</span></td><td>Prompt</td><td>AI에게 주는 입력 지시문</td></tr>
+          <tr><td><span class="term">할루시네이션</span></td><td>Hallucination</td><td>AI가 자신있게 틀린 말을 하는 현상</td></tr>
+          <tr><td><span class="term">RAG</span></td><td>Retrieval-Augmented Generation</td><td>외부 DB 검색 + 생성 결합</td></tr>
+          <tr><td><span class="term">파인튜닝</span></td><td>Fine-tuning</td><td>기존 모델을 특정 목적에 맞게 추가학습</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신 모델</div>
+        <span class="badge badge-ai">GPT-4o</span> <span class="badge badge-ai">Claude 3.7 Sonnet</span> <span class="badge badge-ai">Gemini 2.0</span> <span class="badge badge-new">Llama 3.3</span> <span class="badge badge-hot">DeepSeek R2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🎨</div>
+      <div>
+        <div class="card-title">이미지 생성 AI 원리</div>
+        <div class="card-en">Diffusion Model & GAN</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🌀 Diffusion Model (확산 모델) — Midjourney, DALL-E <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>노이즈(noise, 잡음) → 점진적 제거 → 이미지 생성!</p>
+          <p>마치 안개 낀 사진을 점점 선명하게 만드는 과정처럼 작동합니다.</p>
+          <p>대표 모델: <span class="term">Stable Diffusion</span>, <span class="term">DALL-E 3</span>, <span class="term">Midjourney</span></p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">⚡ Transformer Architecture — 모든 AI의 기반 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p>2017년 구글 논문 "Attention is All You Need"로 시작된 혁명적 구조.</p>
+          <p><span class="term">Attention 메커니즘</span>: 입력 데이터의 중요한 부분에 집중하는 능력.</p>
+          <p>LLM, 이미지 생성, 번역 등 현대 AI의 99%가 이 구조 기반!</p>
+        </div>
+      </div>
+      <div class="accordion" onclick="toggleAcc(this)">
+        <div class="acc-header">🤖 AI Agent — 2025년의 핵심 트렌드 <span class="acc-arrow">▼</span></div>
+        <div class="acc-body">
+          <p><span class="term">AI 에이전트(Agent)</span>: 목표를 받으면 스스로 계획하고 도구를 사용해 실행하는 AI.</p>
+          <p>예: "여행 계획 짜줘" → 항공권 검색 → 호텔 예약 → 일정표 작성 자동화!</p>
+          <p>대표: <span class="term">AutoGPT</span>, <span class="term">Claude Computer Use</span>, <span class="term">OpenAI Operator</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📊</div>
+      <div>
+        <div class="card-title">AI 학습의 종류</div>
+        <div class="card-en">Types of Machine Learning</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>종류</th><th>원문</th><th>예시</th></tr>
+          <tr><td><span class="term">지도학습</span></td><td>Supervised Learning</td><td>정답 있는 데이터로 학습 (스팸 분류)</td></tr>
+          <tr><td><span class="term">비지도학습</span></td><td>Unsupervised Learning</td><td>정답 없이 패턴 발견 (고객 군집화)</td></tr>
+          <tr><td><span class="term">강화학습</span></td><td>Reinforcement Learning</td><td>보상으로 학습 (알파고, 게임 AI)</td></tr>
+          <tr><td><span class="term">전이학습</span></td><td>Transfer Learning</td><td>기학습 모델을 새 과제에 적용</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="security">
+  <div class="section-title"><div class="dot"></div>🔐 사이버 보안</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚠️</div>
+      <div>
+        <div class="card-title">주요 사이버 공격 유형</div>
+        <div class="card-en">Cyber Attack Types</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>공격</th><th>원문</th><th>방법</th></tr>
+          <tr><td><span class="term">피싱</span></td><td>Phishing</td><td>가짜 사이트/이메일로 정보 탈취</td></tr>
+          <tr><td><span class="term">랜섬웨어</span></td><td>Ransomware</td><td>파일 암호화 후 돈 요구</td></tr>
+          <tr><td><span class="term">DDoS</span></td><td>Distributed Denial of Service</td><td>수백만 요청으로 서버 마비</td></tr>
+          <tr><td><span class="term">SQL 인젝션</span></td><td>SQL Injection</td><td>DB 쿼리 조작으로 데이터 탈취</td></tr>
+          <tr><td><span class="term">소셜 엔지니어링</span></td><td>Social Engineering</td><td>심리 조작으로 정보 취득</td></tr>
+          <tr><td><span class="term">제로데이</span></td><td>Zero-Day Exploit</td><td>패치 전 취약점 공격</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🔑</div>
+      <div>
+        <div class="card-title">암호화 기술</div>
+        <div class="card-en">Cryptography</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="comparison">
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent)">대칭키</div>
+          <div class="comp-list">Symmetric<br>같은 키로 암호화·복호화<br>AES-256<br>빠름, 키 공유 문제</div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-title" style="color:var(--accent3)">비대칭키</div>
+          <div class="comp-list">Asymmetric<br>공개키+개인키<br>RSA, ECC<br>HTTPS, 전자서명</div>
+        </div>
+      </div>
+      <div class="tip"><div class="tip-label">🛡️ 보안 습관 TOP 5</div>
+        1. 비밀번호 관리자 사용 (1Password, Bitwarden)<br>
+        2. <span class="term">2FA (Two-Factor Authentication)</span> 2단계 인증 필수<br>
+        3. 공용 WiFi에서 VPN 사용<br>
+        4. 소프트웨어 업데이트 즉시 적용<br>
+        5. 모르는 링크/첨부파일 클릭 금지
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cloud">
+  <div class="section-title"><div class="dot"></div>☁️ 클라우드 컴퓨팅</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">☁️</div>
+      <div>
+        <div class="card-title">클라우드란?</div>
+        <div class="card-en">Cloud Computing</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>인터넷을 통해 서버, 스토리지, DB, 네트워킹 등을 제공하는 서비스.</p>
+      <p>"내 컴퓨터에 설치하지 않고, 인터넷으로 빌려쓰는 것!"</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>서비스 모델</th><th>원문</th><th>예시</th><th>제공 범위</th></tr>
+          <tr><td><span class="term">IaaS</span></td><td>Infrastructure as a Service</td><td>AWS EC2</td><td>서버/네트워크</td></tr>
+          <tr><td><span class="term">PaaS</span></td><td>Platform as a Service</td><td>Heroku, Vercel</td><td>개발 플랫폼</td></tr>
+          <tr><td><span class="term">SaaS</span></td><td>Software as a Service</td><td>구글독스, Slack</td><td>완성된 앱</td></tr>
+          <tr><td><span class="term">FaaS</span></td><td>Function as a Service</td><td>AWS Lambda</td><td>서버리스 함수</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏢</div>
+      <div>
+        <div class="card-title">3대 클라우드 공급자</div>
+        <div class="card-en">Cloud Providers: AWS vs Azure vs GCP</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>회사</th><th>서비스</th><th>시장점유율</th><th>강점</th></tr>
+          <tr><td>Amazon</td><td><span class="term">AWS</span></td><td>31%</td><td>가장 많은 서비스, 글로벌 1위</td></tr>
+          <tr><td>Microsoft</td><td><span class="term">Azure</span></td><td>25%</td><td>기업/MS 제품 연동 강함</td></tr>
+          <tr><td>Google</td><td><span class="term">GCP</span></td><td>11%</td><td>AI/빅데이터, Kubernetes</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 트렌드</div><span class="term">서버리스(Serverless)</span>와 <span class="term">엣지 컴퓨팅(Edge Computing)</span>이 대세. 사용자 가까이에서 처리해 초저지연 실현!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🐳</div>
+      <div>
+        <div class="card-title">Docker & Kubernetes</div>
+        <div class="card-en">Container & Orchestration</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p><span class="term">Docker</span>: 앱을 컨테이너에 패키징. "어디서나 같은 환경에서 실행!"</p>
+      <p><span class="term">Kubernetes (K8s)</span>: 수많은 컨테이너를 자동으로 관리·배포·확장.</p>
+      <div class="tip"><div class="tip-label">💡 비유</div>Docker = 음식을 포장하는 도시락 🍱<br>Kubernetes = 수천 개의 도시락을 관리하는 급식 시스템 🏭</div>
+      <div class="code-block">
+<span class="cm"># Docker 기본 명령어</span>
+docker pull ubuntu          <span class="cm"># 이미지 다운로드</span>
+docker run -it ubuntu bash  <span class="cm"># 컨테이너 실행</span>
+docker ps                   <span class="cm"># 실행 중인 컨테이너 목록</span>
+docker stop [ID]            <span class="cm"># 컨테이너 정지</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mobile">
+  <div class="section-title"><div class="dot"></div>📱 모바일 & 최신 트렌드</div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">📱</div>
+      <div>
+        <div class="card-title">스마트폰 내부 구조</div>
+        <div class="card-en">Smartphone Architecture</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>부품</th><th>원문</th><th>역할</th></tr>
+          <tr><td><span class="term">AP/SoC</span></td><td>Application Processor / System on Chip</td><td>스마트폰의 두뇌 (CPU+GPU+NPU 통합)</td></tr>
+          <tr><td><span class="term">모뎀</span></td><td>Modem</td><td>5G/LTE 통신 담당</td></tr>
+          <tr><td><span class="term">LPDDR5</span></td><td>Low Power DDR5 RAM</td><td>저전력 모바일 램</td></tr>
+          <tr><td><span class="term">UFS 4.0</span></td><td>Universal Flash Storage</td><td>고속 스마트폰 저장장치</td></tr>
+          <tr><td><span class="term">ISP</span></td><td>Image Signal Processor</td><td>카메라 사진 처리 전용 칩</td></tr>
+        </table>
+      </div>
+      <div class="tip"><div class="tip-label">🔥 2025 최신 칩</div>Apple M4 (맥북/아이패드), Snapdragon 8 Elite (안드로이드), Samsung Exynos 2500. 모두 <span class="term">온디바이스 AI (On-device AI)</span> 탑재!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🚀</div>
+      <div>
+        <div class="card-title">2025년 핵심 기술 트렌드</div>
+        <div class="card-en">Tech Trends 2025</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>기술</th><th>원문</th><th>설명</th></tr>
+          <tr><td><span class="term">온디바이스 AI</span></td><td>On-device AI</td><td>클라우드 없이 기기 내 AI 실행</td></tr>
+          <tr><td><span class="term">양자컴퓨팅</span></td><td>Quantum Computing</td><td>양자역학 기반 초고속 연산</td></tr>
+          <tr><td><span class="term">공간컴퓨팅</span></td><td>Spatial Computing</td><td>AR/VR로 현실-디지털 통합 (Vision Pro)</td></tr>
+          <tr><td><span class="term">웹3.0</span></td><td>Web 3.0 / Blockchain</td><td>탈중앙화, 사용자 데이터 소유권</td></tr>
+          <tr><td><span class="term">IoT</span></td><td>Internet of Things</td><td>모든 사물이 인터넷에 연결</td></tr>
+          <tr><td><span class="term">디지털 트윈</span></td><td>Digital Twin</td><td>현실 세계의 디지털 복제본</td></tr>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+      <p style="font-size:13px; font-weight:700; color:var(--gold); margin-bottom:10px;">🔮 곧 다가올 미래 기술</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">AI 에이전트 대중화</div>
+            <div class="tl-desc">스스로 계획·실행하는 AI가 업무 자동화</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2026</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">6G 상용화 준비</div>
+            <div class="tl-desc">Tbps급 초고속 통신, 홀로그램 통화</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2027</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">양자 컴퓨터 실용화</div>
+            <div class="tl-desc">현재 암호화 체계의 전면 개편</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2030</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">AGI 도달 가능성</div>
+            <div class="tl-desc">인간 수준의 범용 인공지능 (AGI) 논의</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚡</div>
+      <div>
+        <div class="card-title">IT 업계 주요 기업</div>
+        <div class="card-en">Big Tech Companies</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>기업</th><th>핵심 기술</th><th>AI 브랜드</th></tr>
+          <tr><td>🍎 Apple</td><td>iPhone, Mac, iOS</td><td>Apple Intelligence</td></tr>
+          <tr><td>🔍 Google</td><td>검색, Android, GCP</td><td>Gemini</td></tr>
+          <tr><td>🪟 Microsoft</td><td>Windows, Azure, Office</td><td>Copilot (GPT-4)</td></tr>
+          <tr><td>📦 Amazon</td><td>AWS, 쇼핑, 물류</td><td>Alexa, Bedrock</td></tr>
+          <tr><td>🤖 OpenAI</td><td>ChatGPT, API</td><td>GPT-4o, o3</td></tr>
+          <tr><td>🔮 Anthropic</td><td>AI 안전 연구</td><td>Claude</td></tr>
+          <tr><td>🎮 NVIDIA</td><td>GPU, CUDA</td><td>AI 인프라 독점</td></tr>
+          <tr><td>🇰🇷 Samsung</td><td>반도체, 스마트폰</td><td>Galaxy AI</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <div class="section-title"><div class="dot"></div>🎮 실력 테스트 퀴즈</div>
+  <p style="color:var(--muted); font-size:13px; margin-bottom:16px;">답을 선택하면 정답/오답을 알려드립니다!</p>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q1. CPU의 풀네임은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Computer Processing Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Central Processing Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Core Power Unit</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Central Program Unit</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q2. 1GB는 몇 MB인가요?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">100 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">512 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">1,024 MB</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">10,000 MB</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q3. HTTPS에서 S의 의미는?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Speed</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Secure</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Server</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Static</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q4. AI에서 "할루시네이션(Hallucination)"이란?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI가 그림을 그리는 기능</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI의 응답 속도</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">AI가 자신있게 틀린 정보를 말하는 현상</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">AI 학습 과정의 오류</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q5. 다음 중 운영체제(OS)가 아닌 것은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Windows 11</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Ubuntu Linux</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Microsoft Word</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Android 15</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q6. SSD가 HDD보다 빠른 이유는?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">더 큰 용량 때문에</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">물리적 회전 없이 플래시 메모리 사용</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">전기를 더 많이 사용해서</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">인터넷에 연결되어서</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q7. LLM의 풀네임은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Large Logic Machine</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Layered Learning Model</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">Large Language Model</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">Local Language Module</div>
+    </div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-q">Q8. Ctrl+Z의 기능은?</div>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">전체 선택</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">저장</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, false)">복사</div>
+      <div class="quiz-opt" onclick="checkQuiz(this, true)">실행 취소 (Undo)</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /content -->
+
+<nav class="bottom-nav">
+  <div class="bn-item active" onclick="showSectionBottom('basics', this)">
+    <span class="bn-icon">🎯</span>
+    <div class="bn-label">기초</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('hardware', this)">
+    <span class="bn-icon">⚙️</span>
+    <div class="bn-label">하드웨어</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('ai', this)">
+    <span class="bn-icon">🤖</span>
+    <div class="bn-label">AI</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('security', this)">
+    <span class="bn-icon">🔐</span>
+    <div class="bn-label">보안</div>
+  </div>
+  <div class="bn-item" onclick="showSectionBottom('quiz', this)">
+    <span class="bn-icon">🎮</span>
+    <div class="bn-label">퀴즈</div>
+  </div>
+</nav>
+
+<script>
+function showSection(id, chipEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  if(chipEl) chipEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showSectionBottom(id, bnEl) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.bn-item').forEach(b => b.classList.remove('active'));
+  if(bnEl) bnEl.classList.add('active');
+  window.scrollTo(0, 0);
+  const chipMap = {basics:'🎯 기초', hardware:'⚙️ 하드웨어', ai:'🤖 AI/딥러닝', security:'🔐 보안', quiz:'🎮 퀴즈'};
+  document.querySelectorAll('.chip').forEach(c => {
+    c.classList.remove('active');
+    if(c.textContent.trim() === (chipMap[id]||'')) c.classList.add('active');
+  });
+}
+
+function toggleAcc(el) {
+  el.classList.toggle('open');
+}
+
+function checkQuiz(el, correct) {
+  const opts = el.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(o => {
+    o.style.pointerEvents = 'none';
+    o.style.opacity = '0.6';
+  });
+  el.style.opacity = '1';
+  if(correct) {
+    el.classList.add('correct');
+    el.innerHTML += ' ✅ 정답!';
+  } else {
+    el.classList.add('wrong');
+    el.innerHTML += ' ❌ 오답!';
+  }
+}
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  const q = this.value.toLowerCase().trim();
+  if(!q) return;
+  const keywords = {
+    'cpu': 'hardware', '하드웨어': 'hardware', 'gpu': 'hardware', '메모리': 'hardware', 'ram': 'hardware', 'ssd': 'hardware',
+    '인터넷': 'internet', 'http': 'internet', 'dns': 'internet', '네트워크': 'internet', '5g': 'internet',
+    '파이썬': 'programming', 'python': 'programming', '자바': 'programming', 'javascript': 'programming', 'git': 'programming', '코딩': 'programming',
+    'ai': 'ai', '인공지능': 'ai', 'gpt': 'ai', 'llm': 'ai', '딥러닝': 'ai', '머신러닝': 'ai', '클로드': 'ai',
+    '해킹': 'security', '보안': 'security', '암호화': 'security', '피싱': 'security', '랜섬웨어': 'security',
+    '클라우드': 'cloud', 'aws': 'cloud', 'docker': 'cloud', 'kubernetes': 'cloud',
+    '기초': 'basics', '컴퓨터': 'basics', '운영체제': 'basics', 'os': 'basics',
+    '모바일': 'mobile', '스마트폰': 'mobile', '트렌드': 'mobile',
+    '퀴즈': 'quiz', '테스트': 'quiz'
+  };
+  for(let [key, section] of Object.entries(keywords)) {
+    if(q.includes(key)) {
+      const chips = document.querySelectorAll('.chip');
+      const sectionMap = {basics:0, hardware:1, software:2, internet:3, programming:4, ai:5, security:6, cloud:7, mobile:8, quiz:9};
+      showSection(section, chips[sectionMap[section]]);
+      return;
+    }
+  }
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.querySelectorAll('.skill-fill').forEach(f => {
+        const w = f.getAttribute('data-width');
+        if(w) f.style.width = w;
+      });
+    }
+  });
+});
+document.querySelectorAll('.card').forEach(c => observer.observe(c));
+</script>
+</body>
+</html>
