@@ -98,6 +98,42 @@ body {
   display: flex; justify-content: center; gap: 24px;
   flex-wrap: wrap;
 }
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.hero-link-main {
+  background: linear-gradient(135deg, var(--accent), #67e8f9);
+  color: var(--bg);
+  box-shadow: var(--glow);
+}
+.hero-link-sub {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.hero-link:hover {
+  transform: translateY(-2px);
+}
+.hero-link-sub:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
 .stat {
   text-align: center;
 }
@@ -597,6 +633,10 @@ tr:hover td { background: rgba(0,245,255,0.03); }
     <div class="stat"><div class="stat-num">200+</div><div class="stat-label">핵심 개념</div></div>
     <div class="stat"><div class="stat-num">10개</div><div class="stat-label">분야</div></div>
     <div class="stat"><div class="stat-num">2025</div><div class="stat-label">최신 업데이트</div></div>
+  </div>
+  <div class="hero-actions">
+    <a class="hero-link hero-link-main" href="https://dhkks-boop.github.io/my-website/github-guide.html">GitHub 설명 바로가기</a>
+    <a class="hero-link hero-link-sub" href="https://github.com/dhkks-boop/my-website" target="_blank" rel="noreferrer">저장소 보기</a>
   </div>
 </div>
 
